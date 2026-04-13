@@ -11,7 +11,7 @@
             <span class="text-white text-sm font-medium">Berita</span>
         </div>
         <h1 class="text-4xl md:text-5xl font-extrabold mb-3">Berita & <span class="text-blue-300">Kegiatan</span></h1>
-        <p class="text-blue-200 text-lg">Informasi terbaru dari Yayasan Al-Hikmah</p>
+        <p class="text-blue-200 text-lg">Informasi terbaru dari Yayasan Al-Hidayah</p>
     </div>
 </section>
 

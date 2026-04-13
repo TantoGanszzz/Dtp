@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Beranda - Yayasan Al-Hikmah')
+@section('title', 'Beranda - Yayasan Pondok Pesantren Al-Hidayah')
 
 @section('content')
 
@@ -17,11 +17,11 @@
                 PPDB 2024/2025 Sedang Berlangsung
             </div>
             <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight tracking-tight">
-                Yayasan Pendidikan
-                <span class="bg-gradient-to-r from-blue-300 to-emerald-300 bg-clip-text text-transparent block">Al-Hikmah</span>
+                Yayasan Pondok Pesantren <br>
+                <span class="bg-gradient-to-r from-blue-300 to-emerald-300 bg-clip-text text-transparent block">Al-Hidayah</span>
             </h1>
             <p class="text-xl md:text-2xl text-blue-100 mb-4 font-medium">Membentuk Generasi Cerdas & Berakhlak Mulia</p>
-            <p class="text-blue-200/80 mb-10 max-w-xl mx-auto leading-relaxed">Lembaga pendidikan Islam terpercaya sejak 1995, mengintegrasikan ilmu pengetahuan modern dengan nilai-nilai keislaman.</p>
+            <p class="text-blue-200/80 mb-10 max-w-xl mx-auto leading-relaxed">Lembaga pendidikan Islam terpercaya sejak 2002, mengintegrasikan ilmu pengetahuan modern dengan nilai-nilai keislaman.</p>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="{{ route('ppdb') }}" class="btn-green text-white px-8 py-4 rounded-2xl font-bold text-base inline-flex items-center gap-2">
                     <i class="fas fa-user-plus"></i>Daftar Sekarang
@@ -32,16 +32,7 @@
             </div>
         </div>
 
-        {{-- Stats --}}
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20 max-w-4xl mx-auto">
-            @foreach([['29+','Tahun Berpengalaman','fa-history'],['1200+','Siswa Aktif','fa-users'],['85+','Tenaga Pendidik','fa-chalkboard-teacher'],['95%','Lulus PTN','fa-trophy']] as $s)
-            <div class="glass rounded-2xl p-5 text-center">
-                <i class="fas {{ $s[2] }} text-blue-300 text-xl mb-2"></i>
-                <div class="text-3xl font-extrabold text-white mb-1">{{ $s[0] }}</div>
-                <div class="text-blue-200 text-xs font-medium">{{ $s[1] }}</div>
-            </div>
-            @endforeach
-        </div>
+        
     </div>
 
     {{-- Wave --}}
@@ -76,8 +67,8 @@
                     </div>
                 </div>
                 <div class="p-7">
-                    <h3 class="text-2xl font-extrabold text-gray-900 mb-3">SMP Al-Hikmah</h3>
-                    <p class="text-gray-500 mb-5 leading-relaxed">Pendidikan menengah pertama dengan kurikulum nasional plus tahfidz Al-Quran dan bahasa Arab-Inggris.</p>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-3">SMP Unggulan Al-Hidayah</h3>
+                    <p class="text-gray-500 mb-5 leading-relaxed">Pendidikan menengah pertama dengan kurikulum nasional.</p>
                     <div class="flex flex-wrap gap-2 mb-6">
                         @foreach(['Tahfidz','Lab IPA','Bahasa Arab','Olahraga'] as $f)
                         <span class="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">{{ $f }}</span>
@@ -104,7 +95,7 @@
                     </div>
                 </div>
                 <div class="p-7">
-                    <h3 class="text-2xl font-extrabold text-gray-900 mb-3">SMA Al-Hikmah</h3>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-3">SMA Unggulan Al-Hidayah</h3>
                     <p class="text-gray-500 mb-5 leading-relaxed">Pendidikan menengah atas dengan jurusan IPA, IPS, dan Bahasa. Persiapan masuk PTN terbaik Indonesia.</p>
                     <div class="flex flex-wrap gap-2 mb-6">
                         @foreach(['IPA','IPS','Bahasa','Olimpiade'] as $f)

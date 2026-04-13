@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'SMP Al-Hikmah')
+@section('title', 'SMP Unggulan Al-Hidayah')
 
 @section('content')
 <div class="bg-blue-800 text-white py-12">
@@ -9,7 +9,7 @@
                 <i class="fas fa-school text-blue-800 text-2xl"></i>
             </div>
             <div>
-                <h1 class="text-3xl font-bold">{{ $sekolah?->nama ?? 'SMP Al-Hikmah' }}</h1>
+                <h1 class="text-3xl font-bold">{{ $sekolah?->nama ?? 'SMP Unggulan Al-Hidayah' }}</h1>
                 <p class="text-blue-200">Sekolah Menengah Pertama</p>
             </div>
         </div>
@@ -41,7 +41,7 @@
             @endif
             <div class="bg-blue-50 rounded-xl p-5">
                 <h3 class="font-bold text-blue-900 mb-3">Informasi PPDB</h3>
-                <p class="text-sm text-gray-700 mb-4">Pendaftaran siswa baru SMP Al-Hikmah telah dibuka. Segera daftarkan putra-putri Anda!</p>
+                <p class="text-sm text-gray-700 mb-4">Pendaftaran siswa baru SMP Unggulan Al-Hidayah telah dibuka. Segera daftarkan putra-putri Anda!</p>
                 <a href="{{ route('ppdb') }}" class="block text-center bg-blue-700 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-800 transition-colors">
                     Daftar Sekarang
                 </a>

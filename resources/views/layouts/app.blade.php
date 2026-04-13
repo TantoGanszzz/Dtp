@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Yayasan Pendidikan Al-Hikmah')</title>
+    <title>@yield('title', 'Yayasan Pondok Pesantren Al-Hidayah')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -60,7 +60,7 @@
                     <i class="fas fa-graduation-cap text-white text-lg"></i>
                 </div>
                 <div>
-                    <div class="font-extrabold text-gray-900 text-base leading-tight">Yayasan Al-Hikmah</div>
+                    <div class="font-extrabold text-gray-900 text-base leading-tight">Yayasan Al-Hidayah</div>
                     <div class="text-xs text-blue-600 font-medium">Pendidikan Berkualitas & Islami</div>
                 </div>
             </a>
@@ -74,10 +74,10 @@
                     </button>
                     <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white shadow-xl rounded-2xl py-2 w-48 hidden group-hover:block border border-gray-100">
                         <a href="{{ route('sekolah.smp') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors">
-                            <i class="fas fa-school mr-3 text-blue-500 w-4"></i>SMP Al-Hikmah
+                            <i class="fas fa-school mr-3 text-blue-500 w-4"></i>SMP Al-Hidayah
                         </a>
                         <a href="{{ route('sekolah.sma') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors">
-                            <i class="fas fa-university mr-3 text-emerald-500 w-4"></i>SMA Al-Hikmah
+                            <i class="fas fa-university mr-3 text-emerald-500 w-4"></i>SMA Al-Hidayah
                         </a>
                     </div>
                 </div>
@@ -132,11 +132,11 @@
                         <i class="fas fa-graduation-cap text-white text-xl"></i>
                     </div>
                     <div>
-                        <div class="font-extrabold text-lg text-white">Yayasan Al-Hikmah</div>
+                        <div class="font-extrabold text-lg text-white">Yayasan Al-Hidayah</div>
                         <div class="text-blue-400 text-sm font-medium">Pendidikan Berkualitas & Islami</div>
                     </div>
                 </div>
-                <p class="text-gray-400 text-sm leading-relaxed mb-5">Mendidik generasi bangsa yang cerdas, berakhlak mulia, dan berdaya saing global sejak 1995. Bersama kami, raih masa depan gemilang.</p>
+                <p class="text-gray-400 text-sm leading-relaxed mb-5">Mendidik generasi bangsa yang cerdas, berakhlak mulia, dan berdaya saing global sejak 2002. Bersama kami, raih masa depan gemilang.</p>
                 <div class="flex space-x-3">
                     <a href="#" class="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"><i class="fab fa-facebook-f text-sm"></i></a>
                     <a href="#" class="w-9 h-9 bg-sky-500 rounded-lg flex items-center justify-center hover:bg-sky-400 transition-colors"><i class="fab fa-twitter text-sm"></i></a>
@@ -147,7 +147,7 @@
             <div>
                 <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wider">Tautan Cepat</h4>
                 <ul class="space-y-2.5">
-                    @foreach([['profil','Profil Yayasan'],['sekolah.smp','SMP Al-Hikmah'],['sekolah.sma','SMA Al-Hikmah'],['ppdb','PPDB Online'],['galeri','Galeri'],['berita','Berita']] as $l)
+                    @foreach([['profil','Profil Yayasan'],['sekolah.smp','SMP Unggulan Al-Hidayah'],['sekolah.sma','SMA Unggulan Al-Hidayah'],['ppdb','PPDB Online'],['galeri','Galeri'],['berita','Berita']] as $l)
                     <li><a href="{{ route($l[0]) }}" class="text-gray-400 hover:text-white text-sm transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-blue-500"></i>{{ $l[1] }}</a></li>
                     @endforeach
                 </ul>
@@ -158,12 +158,12 @@
                     <li class="flex items-start gap-3 text-sm text-gray-400"><i class="fas fa-map-marker-alt text-blue-400 mt-0.5 w-4"></i>Jl. Pendidikan No. 1, Kota</li>
                     <li class="flex items-center gap-3 text-sm text-gray-400"><i class="fas fa-phone text-blue-400 w-4"></i>(021) 1234-5678</li>
                     <li class="flex items-center gap-3 text-sm text-gray-400"><i class="fab fa-whatsapp text-green-400 w-4"></i>0812-3456-7890</li>
-                    <li class="flex items-center gap-3 text-sm text-gray-400"><i class="fas fa-envelope text-blue-400 w-4"></i>info@alhikmah.sch.id</li>
+                    <li class="flex items-center gap-3 text-sm text-gray-400"><i class="fas fa-envelope text-blue-400 w-4"></i>info@alhidayah.sch.id</li>
                 </ul>
             </div>
         </div>
         <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
-            <p class="text-gray-500 text-sm">© {{ date('Y') }} Yayasan Pendidikan Al-Hikmah. Hak cipta dilindungi.</p>
+            <p class="text-gray-500 text-sm">© {{ date('Y') }} Yayasan Pendidikan Al-Hidayah. 2002 - 2026 Hak cipta dilindungi.</p>
             <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-400 text-xs transition-colors">Admin Panel</a>
         </div>
     </div>

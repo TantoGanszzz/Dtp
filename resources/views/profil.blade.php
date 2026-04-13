@@ -11,7 +11,7 @@
             <span class="text-white text-sm font-medium">Profil Yayasan</span>
         </div>
         <h1 class="text-4xl md:text-5xl font-extrabold mb-3">Profil <span class="text-blue-300">Yayasan</span></h1>
-        <p class="text-blue-200 text-lg">Mengenal lebih dekat Yayasan Pendidikan Al-Hikmah</p>
+        <p class="text-blue-200 text-lg">Mengenal lebih dekat Yayasan Pondok Pesantren Al-Hidayah</p>
     </div>
 </section>
 
@@ -43,12 +43,12 @@
                     <h2 class="text-2xl font-extrabold text-gray-900">Sejarah Yayasan</h2>
                 </div>
                 <div class="space-y-4 text-gray-600 leading-relaxed">
-                    <p>Yayasan Pendidikan Al-Hikmah didirikan pada tahun <strong class="text-gray-900">1995</strong> oleh KH. Ahmad Fauzi bersama para tokoh masyarakat setempat. Berawal dari sebuah madrasah kecil dengan 30 siswa, kini telah berkembang menjadi lembaga pendidikan Islam terpercaya dengan lebih dari <strong class="text-gray-900">1.200 siswa aktif</strong>.</p>
+                    <p>Yayasan Pendidikan Al-Hidayah didirikan pada tahun <strong class="text-gray-900">2002</strong> oleh KH. Mashadi bersama para tokoh masyarakat setempat. Berawal dari sebuah madrasah kecil dengan 30 siswa, kini telah berkembang menjadi lembaga pendidikan Islam terpercaya dengan lebih dari <strong class="text-gray-900">1.200 siswa aktif</strong>.</p>
                     <p>Selama hampir tiga dekade, yayasan ini telah melahirkan ribuan alumni yang tersebar di berbagai penjuru negeri, berkontribusi dalam berbagai bidang kehidupan dengan tetap menjunjung tinggi nilai-nilai keislaman.</p>
                 </div>
                 {{-- Timeline --}}
                 <div class="mt-8 space-y-4">
-                    @foreach([['1995','Yayasan Al-Hikmah resmi berdiri dengan 30 siswa pertama'],['2000','Pembangunan gedung SMP Al-Hikmah yang representatif'],['2005','Pendirian SMA Al-Hikmah dengan 3 jurusan'],['2015','Meraih Akreditasi A untuk SMP dan SMA'],['2024','Lebih dari 1.200 siswa aktif dan 85 tenaga pendidik']] as $t)
+                    @foreach([['2002','Yayasan Al-Hidayah resmi berdiri dengan 30 siswa pertama'],['2005','Pembangunan gedung SMP Al-Hidayah yang representatif'],['2010','Pendirian SMA Al-Hidayah dengan 3 jurusan'],['2015','Meraih Akreditasi A untuk SMP dan SMA'],['2024','Lebih dari 1.200 siswa aktif dan 85 tenaga pendidik']] as $t)
                     <div class="flex gap-4">
                         <div class="flex flex-col items-center">
                             <div class="w-10 h-10 gradient-card rounded-full flex items-center justify-center flex-shrink-0 text-white text-xs font-bold">{{ substr($t[0],-2) }}</div>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="space-y-3">
                     @foreach([
-                        ['Ketua Yayasan','KH. Ahmad Fauzi, M.Pd.I','gradient-card','text-white'],
+                        ['Ketua Yayasan','KH. Mashadi Prawironegoro','gradient-card','text-white'],
                         ['Sekretaris','Drs. Hasan Basri, M.M','bg-gray-100','text-gray-900'],
                         ['Bendahara','Hj. Siti Aminah, S.E','bg-gray-100','text-gray-900'],
                         ['Kepala SMP','Drs. Muhamad Ridwan, M.Pd','bg-blue-50','text-blue-900'],
@@ -135,8 +135,8 @@
                         <i class="fas fa-user text-white text-2xl"></i>
                     </div>
                     <div>
-                        <div class="font-extrabold text-gray-900">KH. Ahmad Fauzi, M.Pd.I</div>
-                        <div class="text-gray-500 text-sm">Ketua Yayasan Al-Hikmah</div>
+                        <div class="font-extrabold text-gray-900">KH. Mashadi Prawironegoro</div>
+                        <div class="text-gray-500 text-sm">Ketua Yayasan Al-Hidayah</div>
                         <div class="flex gap-1 mt-1">
                             @for($i=0;$i<5;$i++)<i class="fas fa-star text-amber-400 text-xs"></i>@endfor
                         </div>
@@ -144,7 +144,7 @@
                 </div>
                 <blockquote class="relative">
                     <i class="fas fa-quote-left text-blue-100 text-5xl absolute -top-2 -left-2"></i>
-                    <p class="text-gray-600 leading-relaxed pl-8 italic">Bismillahirrahmanirrahim. Assalamu'alaikum Warahmatullahi Wabarakatuh. Puji syukur kehadirat Allah SWT atas segala nikmat dan karunia-Nya. Yayasan Pendidikan Al-Hikmah hadir sebagai wujud nyata komitmen kami dalam mencerdaskan kehidupan bangsa. Kami percaya bahwa pendidikan yang baik adalah investasi terbaik untuk masa depan. Mari bersama-sama kita wujudkan generasi emas Indonesia yang cerdas dan berakhlak mulia.</p>
+                    <p class="text-gray-600 leading-relaxed pl-8 italic">Bismillahirrahmanirrahim. Assalamu'alaikum Warahmatullahi Wabarakatuh. Puji syukur kehadirat Allah SWT atas segala nikmat dan karunia-Nya. Yayasan Pondok Pesantren Al-Hidayah hadir sebagai wujud nyata komitmen kami dalam mencerdaskan kehidupan bangsa. Kami percaya bahwa pendidikan yang baik adalah investasi terbaik untuk masa depan. Mari bersama-sama kita wujudkan generasi emas Indonesia yang cerdas dan berakhlak mulia.</p>
                 </blockquote>
             </section>
 

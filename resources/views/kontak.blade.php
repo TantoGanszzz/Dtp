@@ -51,7 +51,7 @@
                     <i class="fas fa-clock text-blue-600"></i>Jam Operasional
                 </h3>
                 <div class="space-y-3">
-                    @foreach([['Senin – Jumat','07.00 – 16.00 WIB',true],['Sabtu','07.00 – 12.00 WIB',true],['Minggu','Tutup',false]] as $j)
+                    @foreach([['Senin – Jumat','07.00 – 16.00 WIB',true],['Sabtu','07.00 – 12.00 WIB',true],['Jumat','Tutup',false]] as $j)
                     <div class="flex justify-between items-center py-2 border-b border-gray-50 last:border-0">
                         <span class="text-sm text-gray-600 font-medium">{{ $j[0] }}</span>
                         <span class="text-sm font-bold {{ $j[2] ? 'text-gray-900' : 'text-red-500' }} bg-{{ $j[2] ? 'blue' : 'red' }}-50 px-3 py-1 rounded-full">{{ $j[1] }}</span>
@@ -75,7 +75,7 @@
             <div class="mt-5 p-5 bg-blue-50 rounded-2xl border border-blue-100">
                 <p class="text-blue-800 text-sm font-medium flex items-start gap-2">
                     <i class="fas fa-info-circle mt-0.5 flex-shrink-0"></i>
-                    Yayasan Al-Hikmah mudah dijangkau dengan kendaraan umum maupun pribadi. Tersedia area parkir yang luas.
+                    Yayasan Al-Hidayah mudah dijangkau dengan kendaraan umum maupun pribadi. Tersedia area parkir yang luas.
                 </p>
             </div>
         </div>
