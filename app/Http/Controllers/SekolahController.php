@@ -8,13 +8,13 @@ class SekolahController extends Controller
 {
     public function smp()
     {
-        $sekolah = Sekolah::where('jenjang', 'SMP')->first();
+        $sekolah = \App\Models\Sekolah::with('strukturs')->where('jenjang', 'SMP')->first();
         return view('sekolah.smp', compact('sekolah'));
     }
 
     public function sma()
     {
-        $sekolah = Sekolah::where('jenjang', 'SMA')->first();
+        $sekolah = \App\Models\Sekolah::with('strukturs')->where('jenjang', 'SMA')->first();
         return view('sekolah.sma', compact('sekolah'));
     }
 }

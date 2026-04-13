@@ -16,7 +16,8 @@ class HomeController extends Controller
 
     public function profil()
     {
-        return view('profil');
+        $strukturs = \App\Models\StrukturYayasan::orderBy('urutan')->get();
+        return view('profil', compact('strukturs'));
     }
 
     public function kontak()

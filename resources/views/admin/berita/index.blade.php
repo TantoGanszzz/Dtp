@@ -1,63 +1,65 @@
 @extends('layouts.admin')
 @section('title', 'Kelola Berita')
-
 @section('content')
-<div class="flex justify-between items-center mb-6">
-    <div></div>
-    <a href="{{ route('admin.berita.create') }}" class="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 font-medium text-sm">
-        <i class="fas fa-plus mr-2"></i>Tambah Berita
+
+<div class="flex justify-end mb-5">
+    <a href="{{ route('admin.berita.create') }}" class="btn-green text-white px-5 py-2.5 rounded-xl font-bold text-sm inline-flex items-center gap-2">
+        <i class="fas fa-plus text-xs"></i> Tambah Berita
     </a>
 </div>
 
-<div class="bg-white rounded-xl shadow-sm overflow-hidden">
+<div class="card-admin overflow-hidden">
     <table class="w-full text-sm">
         <thead>
-            <tr class="bg-gray-50">
-                <th class="text-left px-4 py-3 font-semibold text-gray-700">Judul</th>
-                <th class="text-left px-4 py-3 font-semibold text-gray-700">Penulis</th>
-                <th class="text-left px-4 py-3 font-semibold text-gray-700">Tanggal</th>
-                <th class="text-left px-4 py-3 font-semibold text-gray-700">Aksi</th>
+            <tr class="bg-slate-50 text-xs uppercase tracking-wider text-gray-400">
+                <th class="text-left px-6 py-3 font-bold">Berita</th>
+                <th class="text-left px-6 py-3 font-bold">Penulis</th>
+                <th class="text-left px-6 py-3 font-bold">Tanggal</th>
+                <th class="text-left px-6 py-3 font-bold">Aksi</th>
             </tr>
         </thead>
-        <tbody class="divide-y divide-gray-100">
+        <tbody class="divide-y divide-slate-50">
             @forelse($beritas as $b)
-            <tr class="hover:bg-gray-50">
-                <td class="px-4 py-3">
-                    <div class="flex items-center space-x-3">
+            <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-4">
                         @if($b->gambar)
-                        <img src="{{ asset('storage/' . $b->gambar) }}" class="w-12 h-12 object-cover rounded-lg flex-shrink-0">
+                        <img src="{{ asset('storage/'.$b->gambar) }}" class="w-14 h-14 object-cover rounded-xl flex-shrink-0 shadow-sm">
                         @else
-                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-newspaper text-blue-500"></i>
+                        <div class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-newspaper text-green-400"></i>
                         </div>
                         @endif
                         <div>
-                            <div class="font-medium text-gray-900">{{ Str::limit($b->judul, 60) }}</div>
-                            <div class="text-xs text-gray-500 mt-0.5">{{ Str::limit(strip_tags($b->isi), 80) }}</div>
+                            <div class="font-bold text-gray-900">{{ Str::limit($b->judul, 55) }}</div>
+                            <div class="text-xs text-gray-400 mt-0.5">{{ Str::limit(strip_tags($b->isi), 70) }}</div>
                         </div>
                     </div>
                 </td>
-                <td class="px-4 py-3 text-gray-600">{{ $b->penulis }}</td>
-                <td class="px-4 py-3 text-gray-500">{{ $b->created_at->format('d M Y') }}</td>
-                <td class="px-4 py-3">
-                    <div class="flex items-center space-x-3">
-                        <a href="{{ route('admin.berita.edit', $b) }}" class="text-blue-600 hover:text-blue-800 text-xs font-medium">
-                            <i class="fas fa-edit mr-1"></i>Edit
+                <td class="px-6 py-4 text-gray-500 text-xs font-medium">{{ $b->penulis }}</td>
+                <td class="px-6 py-4 text-gray-400 text-xs font-medium">{{ $b->created_at->format('d M Y') }}</td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                        <a href="{{ route('admin.berita.edit', $b) }}" class="text-blue-600 hover:text-blue-800 text-xs font-bold flex items-center gap-1 transition-colors">
+                            <i class="fas fa-pen text-xs"></i> Edit
                         </a>
                         <form action="{{ route('admin.berita.destroy', $b) }}" method="POST" onsubmit="return confirm('Hapus berita ini?')">
                             @csrf @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:text-red-800 text-xs font-medium">
-                                <i class="fas fa-trash mr-1"></i>Hapus
+                            <button type="submit" class="text-red-500 hover:text-red-700 text-xs font-bold flex items-center gap-1 transition-colors">
+                                <i class="fas fa-trash text-xs"></i> Hapus
                             </button>
                         </form>
                     </div>
                 </td>
             </tr>
             @empty
-            <tr><td colspan="4" class="px-4 py-10 text-center text-gray-500">Belum ada berita.</td></tr>
+            <tr><td colspan="4" class="px-6 py-14 text-center">
+                <i class="fas fa-newspaper text-4xl text-slate-200 mb-3 block"></i>
+                <span class="text-gray-400 font-semibold text-sm">Belum ada berita</span>
+            </td></tr>
             @endforelse
         </tbody>
     </table>
-    <div class="p-4">{{ $beritas->links() }}</div>
+    <div class="px-6 py-4 border-t border-slate-100">{{ $beritas->links() }}</div>
 </div>
 @endsection

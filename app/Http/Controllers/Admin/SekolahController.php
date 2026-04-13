@@ -22,17 +22,22 @@ class SekolahController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'jenjang'   => 'required|in:SMP,SMA',
-            'nama'      => 'required|string|max:255',
-            'profil'    => 'required',
-            'fasilitas' => 'required',
-            'jurusan'   => 'nullable',
-            'data_guru' => 'nullable',
-            'foto'      => 'nullable|image|max:2048',
+            'jenjang'              => 'required|in:SMP,SMA',
+            'nama'                 => 'required|string|max:255',
+            'profil'               => 'required',
+            'fasilitas'            => 'required',
+            'jurusan'              => 'nullable',
+            'data_guru'            => 'nullable',
+            'foto'                 => 'nullable|image|max:2048',
+            'struktur_organisasi'  => 'nullable',
+            'foto_struktur'        => 'nullable|image|max:2048',
         ]);
 
         if ($request->hasFile('foto')) {
             $data['foto'] = $request->file('foto')->store('sekolah', 'public');
+        }
+        if ($request->hasFile('foto_struktur')) {
+            $data['foto_struktur'] = $request->file('foto_struktur')->store('sekolah', 'public');
         }
 
         Sekolah::create($data);
@@ -47,18 +52,24 @@ class SekolahController extends Controller
     public function update(Request $request, Sekolah $sekolah)
     {
         $data = $request->validate([
-            'jenjang'   => 'required|in:SMP,SMA',
-            'nama'      => 'required|string|max:255',
-            'profil'    => 'required',
-            'fasilitas' => 'required',
-            'jurusan'   => 'nullable',
-            'data_guru' => 'nullable',
-            'foto'      => 'nullable|image|max:2048',
+            'jenjang'              => 'required|in:SMP,SMA',
+            'nama'                 => 'required|string|max:255',
+            'profil'               => 'required',
+            'fasilitas'            => 'required',
+            'jurusan'              => 'nullable',
+            'data_guru'            => 'nullable',
+            'foto'                 => 'nullable|image|max:2048',
+            'struktur_organisasi'  => 'nullable',
+            'foto_struktur'        => 'nullable|image|max:2048',
         ]);
 
         if ($request->hasFile('foto')) {
             if ($sekolah->foto) \Storage::disk('public')->delete($sekolah->foto);
             $data['foto'] = $request->file('foto')->store('sekolah', 'public');
+        }
+        if ($request->hasFile('foto_struktur')) {
+            if ($sekolah->foto_struktur) \Storage::disk('public')->delete($sekolah->foto_struktur);
+            $data['foto_struktur'] = $request->file('foto_struktur')->store('sekolah', 'public');
         }
 
         $sekolah->update($data);

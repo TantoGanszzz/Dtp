@@ -3,119 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Yayasan Pondok Pesantren Al-Hidayah')</title>
+    <title>@yield('title', 'Yayasan Pendidikan Al-Hikmah')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
-                    colors: {
-                        primary: { 50:'#eff6ff', 100:'#dbeafe', 500:'#3b82f6', 600:'#2563eb', 700:'#1d4ed8', 800:'#1e40af', 900:'#1e3a8a' },
-                        emerald: { 500:'#10b981', 600:'#059669', 700:'#047857' }
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         * { scroll-behavior: smooth; }
-        .gradient-hero { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 40%, #065f46 100%); }
-        .gradient-card { background: linear-gradient(135deg, #1e40af, #1d4ed8); }
-        .gradient-green { background: linear-gradient(135deg, #065f46, #047857); }
-        .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.15); }
-        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
-        .nav-link { position: relative; }
-        .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#2563eb; transition:width 0.3s; }
-        .nav-link:hover::after { width:100%; }
-        .btn-primary { background: linear-gradient(135deg, #1e40af, #2563eb); transition: all 0.3s; box-shadow: 0 4px 15px rgba(37,99,235,0.4); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,0.5); }
-        .btn-green { background: linear-gradient(135deg, #065f46, #059669); transition: all 0.3s; box-shadow: 0 4px 15px rgba(5,150,105,0.4); }
-        .btn-green:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(5,150,105,0.5); }
-        .section-title::after { content:''; display:block; width:60px; height:4px; background:linear-gradient(90deg,#2563eb,#059669); border-radius:2px; margin:12px auto 0; }
-        .ppdb-banner { background: linear-gradient(90deg, #065f46, #059669, #065f46); background-size: 200% 100%; animation: shimmer 3s infinite; }
-        @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-        .stat-card { background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); }
-        .img-overlay::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        /* Base Colors */
+        :root {
+            --green-primary: #16a34a;
+            --green-light: #22c55e;
+            --green-bright: #4ade80;
+        }
+
+        /* Gradients */
+        .grad-main    { background: linear-gradient(135deg, #14532d 0%, #16a34a 50%, #22c55e 100%); }
+        .grad-hero    { background: linear-gradient(135deg, #052e16 0%, #14532d 40%, #166534 100%); }
+        .grad-green   { background: linear-gradient(135deg, #16a34a, #22c55e); }
+        .grad-smp     { background: linear-gradient(135deg, #1e3a8a, #1d4ed8, #2563eb); }
+        .grad-sma     { background: linear-gradient(135deg, #0369a1, #0284c7, #38bdf8); }
+        .grad-card    { background: linear-gradient(135deg, #16a34a, #15803d); }
+        .grad-footer  { background: linear-gradient(135deg, #052e16, #14532d); }
+
+        /* Glass */
+        .glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.2); }
+        .glass-dark { background: rgba(0,0,0,0.2); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.1); }
+
+        /* Buttons */
+        .btn-main { background: linear-gradient(135deg, #16a34a, #22c55e); box-shadow: 0 4px 20px rgba(34,197,94,0.4); transition: all .3s; }
+        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(34,197,94,0.5); }
+        .btn-outline { border: 2px solid rgba(255,255,255,0.6); transition: all .3s; }
+        .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: white; }
+        .btn-smp { background: linear-gradient(135deg, #1e3a8a, #2563eb); box-shadow: 0 4px 20px rgba(37,99,235,0.4); transition: all .3s; }
+        .btn-smp:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37,99,235,0.5); }
+        .btn-sma { background: linear-gradient(135deg, #0369a1, #38bdf8); box-shadow: 0 4px 20px rgba(56,189,248,0.4); transition: all .3s; }
+        .btn-sma:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(56,189,248,0.5); }
+
+        /* Cards */
+        .card { transition: all .35s cubic-bezier(.4,0,.2,1); }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(0,0,0,0.1); }
+
+        /* Nav */
+        .nav-item { position: relative; transition: color .2s; }
+        .nav-item::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background: linear-gradient(90deg,#16a34a,#22c55e); border-radius:2px; transition: width .3s; }
+        .nav-item:hover::after, .nav-item.active::after { width:100%; }
+
+        /* Blob decorations */
+        .blob { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+
+        /* PPDB ticker */
+        .ticker { background: linear-gradient(90deg, #14532d, #16a34a, #22c55e, #16a34a, #14532d); background-size: 300% 100%; animation: ticker 4s linear infinite; }
+        @keyframes ticker { 0%{background-position:100% 0} 100%{background-position:-100% 0} }
+
+        /* Glow */
+        .glow-green { box-shadow: 0 0 30px rgba(34,197,94,0.3); }
+        .glow-blue  { box-shadow: 0 0 30px rgba(37,99,235,0.3); }
+
+        /* Badge */
+        .badge-green { background: rgba(34,197,94,0.15); color: #16a34a; border: 1px solid rgba(34,197,94,0.3); }
+        .badge-blue  { background: rgba(37,99,235,0.1); color: #1d4ed8; border: 1px solid rgba(37,99,235,0.2); }
+
+        /* Dot pulse */
+        .dot-pulse { width:8px; height:8px; background:#22c55e; border-radius:50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+
+        /* Section label */
+        .section-label { font-size:.7rem; font-weight:800; letter-spacing:.15em; text-transform:uppercase; color:#16a34a; }
+
+        /* Underline deco */
+        .title-deco { position:relative; display:inline-block; }
+        .title-deco::after { content:''; position:absolute; bottom:-6px; left:0; width:100%; height:4px; background:linear-gradient(90deg,#16a34a,#22c55e,transparent); border-radius:2px; }
     </style>
 </head>
-<body class="font-sans antialiased bg-gray-50 text-gray-800">
+<body class="bg-gray-50 antialiased">
 
-{{-- PPDB Banner --}}
-<div class="ppdb-banner text-white text-center py-2.5 text-sm font-semibold tracking-wide">
-    🎉 <span class="opacity-90">PPDB 2024/2025 RESMI DIBUKA!</span>
-    <a href="{{ route('ppdb') }}" class="ml-3 bg-white/20 hover:bg-white/30 px-3 py-0.5 rounded-full text-xs font-bold transition-all">Daftar Sekarang →</a>
+{{-- PPDB Ticker --}}
+<div class="ticker text-white text-center py-2 text-xs font-bold tracking-widest uppercase">
+    🎓 &nbsp; PPDB 2024/2025 Resmi Dibuka — Daftarkan Putra-Putri Anda Sekarang &nbsp;
+    <a href="{{ route('ppdb') }}" class="underline underline-offset-2 hover:text-green-200 transition-colors">Daftar di sini →</a>
+    &nbsp; 🎓
 </div>
 
 {{-- Navbar --}}
-<nav class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-17 py-3">
-            <a href="{{ route('home') }}" class="flex items-center space-x-3 group">
-                <div class="w-11 h-11 rounded-xl gradient-card flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-                    <i class="fas fa-graduation-cap text-white text-lg"></i>
+<nav class="bg-white/95 backdrop-blur-xl sticky top-0 z-50 border-b border-gray-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+
+            {{-- Logo --}}
+            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 grad-green rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform glow-green">
+                    <i class="fas fa-graduation-cap text-white"></i>
                 </div>
-                <div>
-                    <div class="font-extrabold text-gray-900 text-base leading-tight">Yayasan Al-Hidayah</div>
-                    <div class="text-xs text-blue-600 font-medium">Pendidikan Berkualitas & Islami</div>
+                <div class="leading-tight">
+                    <div class="font-extrabold text-gray-900 text-sm">Yayasan Al-Hikmah</div>
+                    <div class="text-xs font-semibold text-green-600">Pendidikan Islami Unggulan</div>
                 </div>
             </a>
 
-            <div class="hidden md:flex items-center space-x-7">
-                <a href="{{ route('home') }}" class="nav-link text-sm font-semibold text-gray-700 hover:text-blue-700 transition-colors py-1">Beranda</a>
-                <a href="{{ route('profil') }}" class="nav-link text-sm font-semibold text-gray-700 hover:text-blue-700 transition-colors py-1">Profil</a>
+            {{-- Desktop Menu --}}
+            <div class="hidden lg:flex items-center gap-7">
+                <a href="{{ route('home') }}"     class="nav-item text-sm font-semibold text-gray-600 hover:text-green-700">Beranda</a>
+                <a href="{{ route('profil') }}"   class="nav-item text-sm font-semibold text-gray-600 hover:text-green-700">Profil</a>
                 <div class="relative group">
-                    <button class="nav-link text-sm font-semibold text-gray-700 hover:text-blue-700 transition-colors py-1 flex items-center gap-1">
-                        Sekolah <i class="fas fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
+                    <button class="nav-item text-sm font-semibold text-gray-600 hover:text-green-700 flex items-center gap-1">
+                        Sekolah <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
                     </button>
-                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white shadow-xl rounded-2xl py-2 w-48 hidden group-hover:block border border-gray-100">
-                        <a href="{{ route('sekolah.smp') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors">
-                            <i class="fas fa-school mr-3 text-blue-500 w-4"></i>SMP Al-Hidayah
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-52 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-1 group-hover:translate-y-0">
+                        <a href="{{ route('sekolah.smp') }}" class="flex items-center gap-3 px-4 py-3 hover:bg-green-50 transition-colors group/item">
+                            <div class="w-8 h-8 grad-smp rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-school text-white text-xs"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-gray-800 group-hover/item:text-blue-700">SMP Al-Hikmah</div>
+                                <div class="text-xs text-gray-400">Menengah Pertama</div>
+                            </div>
                         </a>
-                        <a href="{{ route('sekolah.sma') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors">
-                            <i class="fas fa-university mr-3 text-emerald-500 w-4"></i>SMA Al-Hidayah
+                        <a href="{{ route('sekolah.sma') }}" class="flex items-center gap-3 px-4 py-3 hover:bg-green-50 transition-colors group/item">
+                            <div class="w-8 h-8 grad-sma rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-university text-white text-xs"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-gray-800 group-hover/item:text-sky-600">SMA Al-Hikmah</div>
+                                <div class="text-xs text-gray-400">Menengah Atas</div>
+                            </div>
                         </a>
                     </div>
                 </div>
-                <a href="{{ route('berita') }}" class="nav-link text-sm font-semibold text-gray-700 hover:text-blue-700 transition-colors py-1">Berita</a>
-                <a href="{{ route('galeri') }}" class="nav-link text-sm font-semibold text-gray-700 hover:text-blue-700 transition-colors py-1">Galeri</a>
-                <a href="{{ route('kontak') }}" class="nav-link text-sm font-semibold text-gray-700 hover:text-blue-700 transition-colors py-1">Kontak</a>
-                <a href="{{ route('ppdb') }}" class="btn-green text-white px-5 py-2.5 rounded-xl font-bold text-sm inline-block">
-                    <i class="fas fa-edit mr-1.5"></i>Daftar PPDB
+                <a href="{{ route('galeri') }}"   class="nav-item text-sm font-semibold text-gray-600 hover:text-green-700">Galeri</a>
+                <a href="{{ route('kontak') }}"   class="nav-item text-sm font-semibold text-gray-600 hover:text-green-700">Kontak</a>
+                <a href="{{ route('ppdb') }}" class="btn-main text-white px-5 py-2.5 rounded-xl font-bold text-sm inline-flex items-center gap-2">
+                    <i class="fas fa-pen-to-square text-xs"></i> Daftar PPDB
                 </a>
             </div>
 
-            <button id="menuBtn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors">
-                <i class="fas fa-bars text-gray-700"></i>
+            {{-- Mobile Toggle --}}
+            <button id="mobileToggle" class="lg:hidden w-9 h-9 flex items-center justify-center rounded-xl bg-gray-100 hover:bg-green-50 transition-colors">
+                <i class="fas fa-bars text-gray-700 text-sm"></i>
             </button>
         </div>
     </div>
 
-    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg">
-        <div class="px-4 py-4 space-y-1">
-            <a href="{{ route('home') }}" class="flex items-center px-3 py-2.5 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Beranda</a>
-            <a href="{{ route('profil') }}" class="flex items-center px-3 py-2.5 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Profil</a>
-            <a href="{{ route('sekolah.smp') }}" class="flex items-center px-3 py-2.5 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors"><i class="fas fa-school mr-2 text-blue-500"></i>SMP Al-Hikmah</a>
-            <a href="{{ route('sekolah.sma') }}" class="flex items-center px-3 py-2.5 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors"><i class="fas fa-university mr-2 text-emerald-500"></i>SMA Al-Hikmah</a>
-            <a href="{{ route('berita') }}" class="flex items-center px-3 py-2.5 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Berita</a>
-            <a href="{{ route('galeri') }}" class="flex items-center px-3 py-2.5 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Galeri</a>
-            <a href="{{ route('kontak') }}" class="flex items-center px-3 py-2.5 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-700 font-medium transition-colors">Kontak</a>
-            <a href="{{ route('ppdb') }}" class="flex items-center justify-center px-3 py-2.5 rounded-xl btn-green text-white font-bold mt-2">
-                <i class="fas fa-edit mr-2"></i>Daftar PPDB
+    {{-- Mobile Menu --}}
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-gray-100 bg-white">
+        <div class="px-4 py-3 space-y-1">
+            <a href="{{ route('home') }}"       class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-gray-700 hover:bg-green-50 hover:text-green-700 font-semibold text-sm transition-colors">Beranda</a>
+            <a href="{{ route('profil') }}"     class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-gray-700 hover:bg-green-50 hover:text-green-700 font-semibold text-sm transition-colors">Profil</a>
+            <a href="{{ route('sekolah.smp') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-700 font-semibold text-sm transition-colors"><i class="fas fa-school text-blue-500 w-4"></i>SMP Al-Hikmah</a>
+            <a href="{{ route('sekolah.sma') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-gray-700 hover:bg-sky-50 hover:text-sky-600 font-semibold text-sm transition-colors"><i class="fas fa-university text-sky-500 w-4"></i>SMA Al-Hikmah</a>
+            <a href="{{ route('galeri') }}"     class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-gray-700 hover:bg-green-50 hover:text-green-700 font-semibold text-sm transition-colors">Galeri</a>
+            <a href="{{ route('kontak') }}"     class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-gray-700 hover:bg-green-50 hover:text-green-700 font-semibold text-sm transition-colors">Kontak</a>
+            <a href="{{ route('ppdb') }}"       class="btn-main text-white px-4 py-2.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 mt-2">
+                <i class="fas fa-pen-to-square text-xs"></i>Daftar PPDB
             </a>
         </div>
     </div>
 </nav>
 
+{{-- Flash --}}
 @if(session('success'))
 <div class="max-w-7xl mx-auto px-4 mt-4">
-    <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 px-5 py-3.5 rounded-2xl flex items-center justify-between shadow-sm">
-        <span class="flex items-center"><i class="fas fa-check-circle mr-2 text-emerald-500"></i>{{ session('success') }}</span>
-        <button onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-600 transition-colors"><i class="fas fa-times"></i></button>
+    <div class="bg-green-50 border border-green-200 text-green-800 px-5 py-3.5 rounded-2xl flex items-center justify-between">
+        <span class="flex items-center gap-2 text-sm font-semibold"><i class="fas fa-circle-check text-green-500"></i>{{ session('success') }}</span>
+        <button onclick="this.parentElement.remove()" class="text-green-400 hover:text-green-600 transition-colors"><i class="fas fa-xmark"></i></button>
     </div>
 </div>
 @endif
@@ -123,56 +175,101 @@
 @yield('content')
 
 {{-- Footer --}}
-<footer class="bg-gray-900 text-white mt-20">
-    <div class="max-w-7xl mx-auto px-4 pt-16 pb-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-            <div class="md:col-span-2">
-                <div class="flex items-center space-x-3 mb-5">
-                    <div class="w-12 h-12 rounded-xl gradient-card flex items-center justify-center shadow-lg">
-                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+<footer class="grad-footer text-white mt-20 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-green-500/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-green-400/5 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 pt-16 pb-8 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
+
+            {{-- Brand --}}
+            <div class="md:col-span-4">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="w-11 h-11 grad-green rounded-xl flex items-center justify-center shadow-lg glow-green">
+                        <i class="fas fa-graduation-cap text-white"></i>
                     </div>
                     <div>
-                        <div class="font-extrabold text-lg text-white">Yayasan Al-Hidayah</div>
-                        <div class="text-blue-400 text-sm font-medium">Pendidikan Berkualitas & Islami</div>
+                        <div class="font-extrabold text-white">Yayasan Al-Hikmah</div>
+                        <div class="text-green-400 text-xs font-semibold">Pendidikan Islami Unggulan</div>
                     </div>
                 </div>
-                <p class="text-gray-400 text-sm leading-relaxed mb-5">Mendidik generasi bangsa yang cerdas, berakhlak mulia, dan berdaya saing global sejak 2002. Bersama kami, raih masa depan gemilang.</p>
-                <div class="flex space-x-3">
-                    <a href="#" class="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"><i class="fab fa-facebook-f text-sm"></i></a>
-                    <a href="#" class="w-9 h-9 bg-sky-500 rounded-lg flex items-center justify-center hover:bg-sky-400 transition-colors"><i class="fab fa-twitter text-sm"></i></a>
-                    <a href="#" class="w-9 h-9 bg-pink-600 rounded-lg flex items-center justify-center hover:bg-pink-500 transition-colors"><i class="fab fa-instagram text-sm"></i></a>
-                    <a href="#" class="w-9 h-9 bg-green-600 rounded-lg flex items-center justify-center hover:bg-green-500 transition-colors"><i class="fab fa-whatsapp text-sm"></i></a>
+                <p class="text-green-200/70 text-sm leading-relaxed mb-6">Mendidik generasi bangsa yang cerdas, berakhlak mulia, dan berdaya saing global sejak 1995.</p>
+                <div class="flex gap-2">
+                    @foreach([['fab fa-facebook-f','#1877f2'],['fab fa-instagram','#e1306c'],['fab fa-youtube','#ff0000'],['fab fa-whatsapp','#25d366']] as $s)
+                    <a href="#" class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm transition-all hover:scale-110 hover:shadow-lg" style="background:{{ $s[1] }}40; border:1px solid {{ $s[1] }}60">
+                        <i class="{{ $s[0] }}"></i>
+                    </a>
+                    @endforeach
                 </div>
             </div>
-            <div>
-                <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wider">Tautan Cepat</h4>
+
+            {{-- Links --}}
+            <div class="md:col-span-2">
+                <h4 class="font-bold text-white text-sm mb-4 uppercase tracking-wider">Halaman</h4>
                 <ul class="space-y-2.5">
-                    @foreach([['profil','Profil Yayasan'],['sekolah.smp','SMP Unggulan Al-Hidayah'],['sekolah.sma','SMA Unggulan Al-Hidayah'],['ppdb','PPDB Online'],['galeri','Galeri'],['berita','Berita']] as $l)
-                    <li><a href="{{ route($l[0]) }}" class="text-gray-400 hover:text-white text-sm transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-blue-500"></i>{{ $l[1] }}</a></li>
+                    @foreach([['home','Beranda'],['profil','Profil'],['galeri','Galeri'],['kontak','Kontak']] as $l)
+                    <li><a href="{{ route($l[0]) }}" class="text-green-200/70 hover:text-white text-sm transition-colors flex items-center gap-2 group">
+                        <i class="fas fa-chevron-right text-xs text-green-500 group-hover:translate-x-1 transition-transform"></i>{{ $l[1] }}
+                    </a></li>
                     @endforeach
                 </ul>
             </div>
-            <div>
-                <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wider">Kontak</h4>
+
+            {{-- Sekolah --}}
+            <div class="md:col-span-3">
+                <h4 class="font-bold text-white text-sm mb-4 uppercase tracking-wider">Unit Sekolah</h4>
+                <div class="space-y-3">
+                    <a href="{{ route('sekolah.smp') }}" class="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10">
+                        <div class="w-8 h-8 grad-smp rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-school text-white text-xs"></i>
+                        </div>
+                        <div>
+                            <div class="text-white text-sm font-bold">SMP Al-Hikmah</div>
+                            <div class="text-green-300/60 text-xs">Menengah Pertama</div>
+                        </div>
+                    </a>
+                    <a href="{{ route('sekolah.sma') }}" class="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10">
+                        <div class="w-8 h-8 grad-sma rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-university text-white text-xs"></i>
+                        </div>
+                        <div>
+                            <div class="text-white text-sm font-bold">SMA Al-Hikmah</div>
+                            <div class="text-green-300/60 text-xs">Menengah Atas</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            {{-- Kontak --}}
+            <div class="md:col-span-3">
+                <h4 class="font-bold text-white text-sm mb-4 uppercase tracking-wider">Kontak</h4>
                 <ul class="space-y-3">
-                    <li class="flex items-start gap-3 text-sm text-gray-400"><i class="fas fa-map-marker-alt text-blue-400 mt-0.5 w-4"></i>Jl. Pendidikan No. 1, Kota</li>
-                    <li class="flex items-center gap-3 text-sm text-gray-400"><i class="fas fa-phone text-blue-400 w-4"></i>(021) 1234-5678</li>
-                    <li class="flex items-center gap-3 text-sm text-gray-400"><i class="fab fa-whatsapp text-green-400 w-4"></i>0812-3456-7890</li>
-                    <li class="flex items-center gap-3 text-sm text-gray-400"><i class="fas fa-envelope text-blue-400 w-4"></i>info@alhidayah.sch.id</li>
+                    @foreach([
+                        ['fas fa-location-dot','Jl. Pendidikan No. 1, Kota'],
+                        ['fas fa-phone','(021) 1234-5678'],
+                        ['fab fa-whatsapp','0812-3456-7890'],
+                        ['fas fa-envelope','info@alhikmah.sch.id'],
+                    ] as $k)
+                    <li class="flex items-start gap-3 text-sm text-green-200/70">
+                        <i class="{{ $k[0] }} text-green-400 mt-0.5 w-4 text-center flex-shrink-0"></i>{{ $k[1] }}
+                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
-        <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
-            <p class="text-gray-500 text-sm">© {{ date('Y') }} Yayasan Pendidikan Al-Hidayah. 2002 - 2026 Hak cipta dilindungi.</p>
-            <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-400 text-xs transition-colors">Admin Panel</a>
+
+        <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
+            <p class="text-green-300/50 text-xs">© {{ date('Y') }} Yayasan Pendidikan Al-Hikmah. Hak cipta dilindungi.</p>
+            <a href="{{ route('login') }}" class="text-green-300/40 hover:text-green-300/70 text-xs transition-colors flex items-center gap-1">
+                <i class="fas fa-lock text-xs"></i> Admin
+            </a>
         </div>
     </div>
 </footer>
 
 <script>
-    document.getElementById('menuBtn').addEventListener('click', function() {
-        const menu = document.getElementById('mobileMenu');
-        menu.classList.toggle('hidden');
+    document.getElementById('mobileToggle').addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.toggle('hidden');
     });
 </script>
 </body>

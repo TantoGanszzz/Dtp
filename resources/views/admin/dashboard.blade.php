@@ -1,22 +1,23 @@
 @extends('layouts.admin')
 @section('title', 'Dashboard')
-
 @section('content')
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+
+{{-- Stat Cards --}}
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-7">
     @foreach([
-        ['Total Pendaftar', $stats['ppdb'], 'fa-user-plus', 'from-blue-500 to-blue-700', 'bg-blue-100', 'text-blue-600'],
-        ['Pending Review', $stats['pending'], 'fa-clock', 'from-amber-400 to-amber-600', 'bg-amber-100', 'text-amber-600'],
-        ['Total Berita', $stats['berita'], 'fa-newspaper', 'from-emerald-500 to-emerald-700', 'bg-emerald-100', 'text-emerald-600'],
-        ['Total Foto', $stats['galeri'], 'fa-images', 'from-purple-500 to-purple-700', 'bg-purple-100', 'text-purple-600'],
+        ['Total Pendaftar', $stats['ppdb'],    'fa-user-plus',       'from-green-500 to-emerald-600', 'bg-green-100',  'text-green-600'],
+        ['Pending Review',  $stats['pending'], 'fa-clock',           'from-amber-400 to-orange-500',  'bg-amber-100',  'text-amber-600'],
+        ['Total Berita',    $stats['berita'],  'fa-newspaper',       'from-blue-500 to-indigo-600',   'bg-blue-100',   'text-blue-600'],
+        ['Total Foto',      $stats['galeri'],  'fa-images',          'from-purple-500 to-violet-600', 'bg-purple-100', 'text-purple-600'],
     ] as $s)
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 overflow-hidden relative">
-        <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br {{ $s[3] }} opacity-5 rounded-full translate-x-6 -translate-y-6"></div>
-        <div class="flex items-start justify-between relative z-10">
+    <div class="card-admin p-5 relative overflow-hidden">
+        <div class="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br {{ $s[3] }} opacity-10 rounded-full"></div>
+        <div class="flex items-start justify-between">
             <div>
                 <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">{{ $s[0] }}</p>
                 <p class="text-3xl font-extrabold text-gray-900">{{ $s[1] }}</p>
             </div>
-            <div class="w-11 h-11 {{ $s[4] }} rounded-xl flex items-center justify-center">
+            <div class="w-11 h-11 {{ $s[4] }} rounded-2xl flex items-center justify-center flex-shrink-0">
                 <i class="fas {{ $s[2] }} {{ $s[5] }}"></i>
             </div>
         </div>
@@ -25,31 +26,31 @@
 </div>
 
 {{-- Quick Actions --}}
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-7">
     @foreach([
-        [route('admin.berita.create'), 'fa-plus', 'Tambah Berita', 'bg-blue-600 hover:bg-blue-700'],
-        [route('admin.galeri.create'), 'fa-image', 'Upload Foto', 'bg-purple-600 hover:bg-purple-700'],
-        [route('admin.ppdb.index'), 'fa-list', 'Data PPDB', 'bg-amber-500 hover:bg-amber-600'],
-        [route('admin.sekolah.index'), 'fa-school', 'Data Sekolah', 'bg-emerald-600 hover:bg-emerald-700'],
+        [route('admin.berita.create'), 'fa-plus',       'Tambah Berita',  'from-blue-500 to-blue-700'],
+        [route('admin.galeri.create'), 'fa-image',      'Upload Foto',    'from-purple-500 to-purple-700'],
+        [route('admin.ppdb.index'),    'fa-list-check', 'Data PPDB',      'from-amber-500 to-orange-600'],
+        [route('admin.sekolah.index'), 'fa-school',     'Data Sekolah',   'from-green-500 to-emerald-600'],
     ] as $q)
-    <a href="{{ $q[0] }}" class="{{ $q[3] }} text-white rounded-2xl p-4 flex items-center gap-3 font-bold text-sm transition-colors shadow-sm">
-        <i class="fas {{ $q[1] }} text-white/80"></i>{{ $q[2] }}
+    <a href="{{ $q[0] }}" class="bg-gradient-to-br {{ $q[3] }} text-white rounded-2xl p-4 flex items-center gap-3 font-bold text-sm transition-all hover:-translate-y-0.5 shadow-sm hover:shadow-md">
+        <i class="fas {{ $q[1] }} text-white/80 text-sm"></i>{{ $q[2] }}
     </a>
     @endforeach
 </div>
 
-{{-- Tabel PPDB Terbaru --}}
-<div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-    <div class="flex justify-between items-center px-6 py-4 border-b border-gray-100">
+{{-- Tabel --}}
+<div class="card-admin overflow-hidden">
+    <div class="flex justify-between items-center px-6 py-4 border-b border-slate-100">
         <h2 class="font-extrabold text-gray-900">Pendaftar PPDB Terbaru</h2>
-        <a href="{{ route('admin.ppdb.index') }}" class="text-blue-600 text-xs font-bold hover:text-blue-800 transition-colors flex items-center gap-1">
-            Lihat Semua <i class="fas fa-arrow-right"></i>
+        <a href="{{ route('admin.ppdb.index') }}" class="text-green-600 text-xs font-bold hover:text-green-800 flex items-center gap-1 transition-colors">
+            Lihat Semua <i class="fas fa-arrow-right text-xs"></i>
         </a>
     </div>
     <div class="overflow-x-auto">
         <table class="w-full text-sm">
             <thead>
-                <tr class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+                <tr class="bg-slate-50 text-xs uppercase tracking-wider text-gray-400">
                     <th class="text-left px-6 py-3 font-bold">Nama</th>
                     <th class="text-left px-6 py-3 font-bold">Sekolah</th>
                     <th class="text-left px-6 py-3 font-bold">No. HP</th>
@@ -57,25 +58,23 @@
                     <th class="text-left px-6 py-3 font-bold">Tanggal</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-50">
+            <tbody class="divide-y divide-slate-50">
                 @forelse($ppdb_terbaru as $p)
-                <tr class="hover:bg-gray-50 transition-colors">
+                <tr class="hover:bg-slate-50/50 transition-colors">
                     <td class="px-6 py-4 font-semibold text-gray-900">{{ $p->nama_lengkap }}</td>
                     <td class="px-6 py-4">
-                        <span class="bg-blue-100 text-blue-800 px-2.5 py-1 rounded-full text-xs font-bold">{{ $p->pilihan_sekolah }}</span>
+                        <span class="badge-{{ strtolower($p->pilihan_sekolah) }} text-xs font-bold px-2.5 py-1 rounded-full">{{ $p->pilihan_sekolah }}</span>
                     </td>
                     <td class="px-6 py-4 text-gray-500">{{ $p->no_hp }}</td>
                     <td class="px-6 py-4">
-                        <span class="px-2.5 py-1 rounded-full text-xs font-bold
-                            {{ $p->status == 'diterima' ? 'bg-emerald-100 text-emerald-800' : ($p->status == 'ditolak' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800') }}">
-                            {{ ucfirst($p->status) }}
-                        </span>
+                        <span class="badge-{{ $p->status }} text-xs font-bold px-2.5 py-1 rounded-full">{{ ucfirst($p->status) }}</span>
                     </td>
-                    <td class="px-6 py-4 text-gray-400 text-xs">{{ $p->created_at->format('d M Y') }}</td>
+                    <td class="px-6 py-4 text-gray-400 text-xs font-medium">{{ $p->created_at->format('d M Y') }}</td>
                 </tr>
                 @empty
-                <tr><td colspan="5" class="px-6 py-12 text-center text-gray-400">
-                    <i class="fas fa-inbox text-3xl mb-2 block text-gray-200"></i>Belum ada pendaftar.
+                <tr><td colspan="5" class="px-6 py-14 text-center">
+                    <i class="fas fa-inbox text-4xl text-slate-200 mb-3 block"></i>
+                    <span class="text-gray-400 font-semibold text-sm">Belum ada pendaftar</span>
                 </td></tr>
                 @endforelse
             </tbody>
