@@ -5,7 +5,7 @@
 <div class="card-admin overflow-hidden">
     <div class="flex justify-between items-center px-6 py-4 border-b border-slate-100">
         <div>
-            <h2 class="font-extrabold text-gray-900">Data Pendaftar PPDB</h2>
+            <h2 class="font-extrabold text-gray-900">Data Pendaftar PPSB</h2>
             <p class="text-xs text-gray-400 mt-0.5 font-medium">Total {{ $ppdbs->total() }} pendaftar</p>
         </div>
     </div>

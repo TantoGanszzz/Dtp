@@ -2,14 +2,18 @@
 @section('title', 'SMP Al-Hikmah')
 @section('content')
 
-<section class="grad-smp relative overflow-hidden py-20">
+@php $smpHeroFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
+<section class="photo-hero grad-smp relative overflow-hidden py-20" @if($smpHeroFoto) style="background-image: url('{{ asset('storage/' . $smpHeroFoto) }}')" @endif>
+
     <div class="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-300/10 rounded-full -translate-x-1/2 translate-y-1/2 blur-3xl pointer-events-none"></div>
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
+    <div class="photo-overlay"></div>
+    <div class="max-w-7xl mx-auto px-4 relative z-20">
+
         <div class="flex items-center gap-3 mb-4 text-blue-200 text-sm">
             <a href="{{ route('home') }}" class="hover:text-white transition-colors">Beranda</a>
             <i class="fas fa-chevron-right text-xs"></i>
-            <span class="text-white font-semibold">SMP Al-Hikmah</span>
+            <span class="text-white font-semibold">SMP Unggulan Al-Hidayah </span>
         </div>
         <div class="flex items-center gap-5">
             <div class="w-16 h-16 bg-white/15 backdrop-blur rounded-2xl flex items-center justify-center border border-white/20">
@@ -131,11 +135,21 @@
         <div class="space-y-5">
 
             {{-- Foto Sekolah --}}
+@php $sidebarFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
             @if($sekolah->foto)
             <div class="rounded-3xl overflow-hidden shadow-md">
                 <img src="{{ asset('storage/'.$sekolah->foto) }}" alt="{{ $sekolah->nama }}" class="w-full h-52 object-cover">
                 <div class="grad-smp px-4 py-2.5">
                     <p class="text-white text-xs font-bold text-center">{{ $sekolah->nama }}</p>
+                </div>
+            </div>
+            @elseif($sidebarFoto)
+            <div class="rounded-3xl overflow-hidden shadow-md photo-card h-52" style="background-image: url('{{ asset('storage/' . $sidebarFoto) }}')">
+                <div class="photo-card-overlay"></div>
+                <div class="absolute inset-0 flex items-end p-4">
+                    <div class="grad-smp px-4 py-2.5 w-full">
+                        <p class="text-white text-xs font-bold text-center">{{ $sekolah->nama ?? 'SMP Al-Hikmah' }}</p>
+                    </div>
                 </div>
             </div>
             @else
@@ -146,6 +160,7 @@
                 </div>
             </div>
             @endif
+
 
             {{-- PPDB Card --}}
             <div class="grad-smp rounded-3xl p-6 relative overflow-hidden">

@@ -2,17 +2,21 @@
 @section('title', 'PPDB Online 2024/2025')
 
 @section('content')
+@php $ppdbFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
 {{-- Hero --}}
-<section class="gradient-hero text-white py-16 relative overflow-hidden">
+<section class="photo-hero grad-hero text-white py-16 relative overflow-hidden" @if($ppdbFoto) style="background-image: url('{{ asset('storage/' . $ppdbFoto) }}')" @endif>
+
     <div class="absolute top-0 right-0 w-72 h-72 bg-emerald-500/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
+    <div class="photo-overlay"></div>
+    <div class="max-w-7xl mx-auto px-4 relative z-20">
+
         <div class="flex items-center gap-3 mb-3">
             <a href="{{ route('home') }}" class="text-blue-300 hover:text-white text-sm transition-colors">Beranda</a>
             <i class="fas fa-chevron-right text-blue-400 text-xs"></i>
             <span class="text-white text-sm font-medium">PPDB Online</span>
         </div>
         <h1 class="text-4xl md:text-5xl font-extrabold mb-3">PPDB Online <span class="text-emerald-300">2024/2025</span></h1>
-        <p class="text-blue-200 text-lg">Penerimaan Peserta Didik Baru — Yayasan Al-Hikmah</p>
+        <p class="text-blue-200 text-lg">Penerimaan Peserta Didik Baru — Yayasan Unggulan Al-Hidayah</p>
     </div>
 </section>
 

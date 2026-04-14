@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Yayasan Pendidikan Al-Hikmah')</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>@yield('title', 'Yayasan Pondok Pesantren Al-Hidayah')</title>
+<script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <style>
+        .photo-hero {
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .photo-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+            z-index: 10;
+        }
+        .photo-card {
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .photo-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+            z-index: 10;
+        }
+    </style>
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -26,7 +56,7 @@
         .grad-smp     { background: linear-gradient(135deg, #1e3a8a, #1d4ed8, #2563eb); }
         .grad-sma     { background: linear-gradient(135deg, #0369a1, #0284c7, #38bdf8); }
         .grad-card    { background: linear-gradient(135deg, #16a34a, #15803d); }
-        .grad-footer  { background: linear-gradient(135deg, #052e16, #14532d); }
+        .grad-footer  { background: #000000; }
 
         /* Glass */
         .glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.2); }
@@ -82,7 +112,7 @@
 
 {{-- PPDB Ticker --}}
 <div class="ticker text-white text-center py-2 text-xs font-bold tracking-widest uppercase">
-    🎓 &nbsp; PPDB 2024/2025 Resmi Dibuka — Daftarkan Putra-Putri Anda Sekarang &nbsp;
+    🎓 &nbsp; PPSB 2024/2025 Resmi Dibuka — Daftarkan Putra-Putri Anda Sekarang &nbsp;
     <a href="{{ route('ppdb') }}" class="underline underline-offset-2 hover:text-green-200 transition-colors">Daftar di sini →</a>
     &nbsp; 🎓
 </div>
@@ -98,7 +128,7 @@
                     <i class="fas fa-graduation-cap text-white"></i>
                 </div>
                 <div class="leading-tight">
-                    <div class="font-extrabold text-gray-900 text-sm">Yayasan Al-Hikmah</div>
+                    <div class="font-extrabold text-gray-900 text-sm">Yayasan Pondok Pesantren Al-Hidayah</div>
                     <div class="text-xs font-semibold text-green-600">Pendidikan Islami Unggulan</div>
                 </div>
             </a>
@@ -117,7 +147,7 @@
                                 <i class="fas fa-school text-white text-xs"></i>
                             </div>
                             <div>
-                                <div class="text-sm font-bold text-gray-800 group-hover/item:text-blue-700">SMP Al-Hikmah</div>
+                                <div class="text-sm font-bold text-gray-800 group-hover/item:text-blue-700">SMP Unggulan Al-Hidayah</div>
                                 <div class="text-xs text-gray-400">Menengah Pertama</div>
                             </div>
                         </a>
@@ -126,7 +156,7 @@
                                 <i class="fas fa-university text-white text-xs"></i>
                             </div>
                             <div>
-                                <div class="text-sm font-bold text-gray-800 group-hover/item:text-sky-600">SMA Al-Hikmah</div>
+                                <div class="text-sm font-bold text-gray-800 group-hover/item:text-sky-600">SMA Unggulan Al-Hidayah</div>
                                 <div class="text-xs text-gray-400">Menengah Atas</div>
                             </div>
                         </a>
@@ -189,7 +219,7 @@
                         <i class="fas fa-graduation-cap text-white"></i>
                     </div>
                     <div>
-                        <div class="font-extrabold text-white">Yayasan Al-Hikmah</div>
+                        <div class="font-extrabold text-white">Yayasan Pondok Pesantren Al-Hidayah</div>
                         <div class="text-green-400 text-xs font-semibold">Pendidikan Islami Unggulan</div>
                     </div>
                 </div>
@@ -233,7 +263,7 @@
                             <i class="fas fa-university text-white text-xs"></i>
                         </div>
                         <div>
-                            <div class="text-white text-sm font-bold">SMA Al-Hikmah</div>
+                            <div class="text-white text-sm font-bold">SMA Unggulan Al-Hidayah</div>
                             <div class="text-green-300/60 text-xs">Menengah Atas</div>
                         </div>
                     </a>
@@ -259,7 +289,7 @@
         </div>
 
         <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
-            <p class="text-green-300/50 text-xs">© {{ date('Y') }} Yayasan Pendidikan Al-Hikmah. Hak cipta dilindungi.</p>
+            <p class="text-green-300/50 text-xs">© {{ date('Y') }} Yayasan Pondok Pesantren Al-Hidayah. Hak cipta dilindungi.</p>
             <a href="{{ route('login') }}" class="text-green-300/40 hover:text-green-300/70 text-xs transition-colors flex items-center gap-1">
                 <i class="fas fa-lock text-xs"></i> Admin
             </a>

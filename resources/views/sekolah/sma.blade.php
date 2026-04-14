@@ -1,15 +1,19 @@
 @extends('layouts.app')
-@section('title', 'SMA Al-Hikmah')
+@section('title', 'SMA Unggulan Al-Hidayah')
 @section('content')
 
-<section class="grad-sma relative overflow-hidden py-20">
+@php $smaHeroFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
+<section class="photo-hero grad-sma relative overflow-hidden py-20" @if($smaHeroFoto) style="background-image: url('{{ asset('storage/' . $smaHeroFoto) }}')" @endif>
+
     <div class="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-0 left-0 w-64 h-64 bg-sky-300/10 rounded-full -translate-x-1/2 translate-y-1/2 blur-3xl pointer-events-none"></div>
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
+    <div class="photo-overlay"></div>
+    <div class="max-w-7xl mx-auto px-4 relative z-20">
+
         <div class="flex items-center gap-3 mb-4 text-sky-200 text-sm">
             <a href="{{ route('home') }}" class="hover:text-white transition-colors">Beranda</a>
             <i class="fas fa-chevron-right text-xs"></i>
-            <span class="text-white font-semibold">SMA Al-Hikmah</span>
+            <span class="text-white font-semibold">SMA Unggulan Al-Hidayah</span>
         </div>
         <div class="flex items-center gap-5">
             <div class="w-16 h-16 bg-white/15 backdrop-blur rounded-2xl flex items-center justify-center border border-white/20">
@@ -17,7 +21,7 @@
             </div>
             <div>
                 <span class="text-xs font-bold text-sky-200 uppercase tracking-widest">Sekolah Menengah Atas</span>
-                <h1 class="text-4xl font-extrabold text-white mt-1">{{ $sekolah?->nama ?? 'SMA Al-Hikmah' }}</h1>
+                <h1 class="text-4xl font-extrabold text-white mt-1">{{ $sekolah?->nama ?? 'SMA Unggulan Al-Hidayah' }}</h1>
             </div>
         </div>
     </div>
@@ -56,7 +60,7 @@
                     <h2 class="text-xl font-extrabold text-gray-900">Program Jurusan</h2>
                 </div>
                 <div class="grid grid-cols-3 gap-4 mb-5">
-                    @foreach([['IPA','fa-flask','Ilmu Pengetahuan Alam'],['IPS','fa-globe','Ilmu Pengetahuan Sosial'],['Bahasa','fa-language','Bahasa & Sastra']] as $j)
+                    @foreach([['IPA','fa-flask','Ilmu Pengetahuan Alam']] as $j)
                     <div class="text-center p-5 rounded-2xl border-2 border-sky-100 bg-sky-50 hover:border-sky-300 transition-colors">
                         <div class="w-12 h-12 grad-sma rounded-xl flex items-center justify-center mx-auto mb-3">
                             <i class="fas {{ $j[1] }} text-white"></i>
@@ -155,11 +159,21 @@
         <div class="space-y-5">
 
             {{-- Foto Sekolah --}}
+@php $sidebarFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
             @if($sekolah->foto)
             <div class="rounded-3xl overflow-hidden shadow-md">
                 <img src="{{ asset('storage/'.$sekolah->foto) }}" alt="{{ $sekolah->nama }}" class="w-full h-52 object-cover">
                 <div class="grad-sma px-4 py-2.5">
                     <p class="text-white text-xs font-bold text-center">{{ $sekolah->nama }}</p>
+                </div>
+            </div>
+            @elseif($sidebarFoto)
+            <div class="rounded-3xl overflow-hidden shadow-md photo-card h-52" style="background-image: url('{{ asset('storage/' . $sidebarFoto) }}')">
+                <div class="photo-card-overlay"></div>
+                <div class="absolute inset-0 flex items-end p-4">
+                    <div class="grad-sma px-4 py-2.5 w-full">
+                        <p class="text-white text-xs font-bold text-center">{{ $sekolah->nama ?? 'SMA Unggulan Al-Hidayah' }}</p>
+                    </div>
                 </div>
             </div>
             @else
@@ -171,6 +185,7 @@
             </div>
             @endif
 
+
             {{-- PPDB Card --}}
             <div class="grad-sma rounded-3xl p-6 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full translate-x-6 -translate-y-6"></div>
@@ -178,8 +193,8 @@
                     <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center mb-4">
                         <i class="fas fa-user-plus text-white"></i>
                     </div>
-                    <h3 class="font-extrabold text-white text-lg mb-2">Daftar PPDB</h3>
-                    <p class="text-sky-100 text-sm mb-4 leading-relaxed">Pendaftaran siswa baru SMA Al-Hikmah telah dibuka!</p>
+                    <h3 class="font-extrabold text-white text-lg mb-2">Daftar PPSB</h3>
+                    <p class="text-sky-100 text-sm mb-4 leading-relaxed">Pendaftaran siswa baru SMA Unggulan Al-Hidayah telah dibuka!</p>
                     <a href="{{ route('ppdb') }}" class="block text-center bg-white text-sky-700 py-2.5 rounded-xl font-extrabold text-sm hover:bg-sky-50 transition-colors">
                         Daftar Sekarang
                     </a>
@@ -192,7 +207,7 @@
                 <div class="space-y-3">
                     @foreach([
                         ['fa-graduation-cap', 'Jenjang',    'SMA (Kelas 10-12)'],
-                        ['fa-book',           'Jurusan',    'IPA, IPS, Bahasa'],
+                        ['fa-book',           'Jurusan',    'IPA'],
                         ['fa-star',           'Akreditasi', 'A (Sangat Baik)'],
                     ] as $info)
                     <div class="flex items-center gap-3">

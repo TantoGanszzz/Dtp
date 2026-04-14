@@ -7,7 +7,6 @@
     @foreach([
         ['Total Pendaftar', $stats['ppdb'],    'fa-user-plus',       'from-green-500 to-emerald-600', 'bg-green-100',  'text-green-600'],
         ['Pending Review',  $stats['pending'], 'fa-clock',           'from-amber-400 to-orange-500',  'bg-amber-100',  'text-amber-600'],
-        ['Total Berita',    $stats['berita'],  'fa-newspaper',       'from-blue-500 to-indigo-600',   'bg-blue-100',   'text-blue-600'],
         ['Total Foto',      $stats['galeri'],  'fa-images',          'from-purple-500 to-violet-600', 'bg-purple-100', 'text-purple-600'],
     ] as $s)
     <div class="card-admin p-5 relative overflow-hidden">
@@ -28,7 +27,6 @@
 {{-- Quick Actions --}}
 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-7">
     @foreach([
-        [route('admin.berita.create'), 'fa-plus',       'Tambah Berita',  'from-blue-500 to-blue-700'],
         [route('admin.galeri.create'), 'fa-image',      'Upload Foto',    'from-purple-500 to-purple-700'],
         [route('admin.ppdb.index'),    'fa-list-check', 'Data PPDB',      'from-amber-500 to-orange-600'],
         [route('admin.sekolah.index'), 'fa-school',     'Data Sekolah',   'from-green-500 to-emerald-600'],
@@ -42,7 +40,7 @@
 {{-- Tabel --}}
 <div class="card-admin overflow-hidden">
     <div class="flex justify-between items-center px-6 py-4 border-b border-slate-100">
-        <h2 class="font-extrabold text-gray-900">Pendaftar PPDB Terbaru</h2>
+        <h2 class="font-extrabold text-gray-900">Pendaftar PPSB Terbaru</h2>
         <a href="{{ route('admin.ppdb.index') }}" class="text-green-600 text-xs font-bold hover:text-green-800 flex items-center gap-1 transition-colors">
             Lihat Semua <i class="fas fa-arrow-right text-xs"></i>
         </a>

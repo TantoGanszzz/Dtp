@@ -2,14 +2,18 @@
 @section('title', 'Beranda — Yayasan Al-Hikmah')
 @section('content')
 
-{{-- HERO --}}
-<section class="grad-hero relative overflow-hidden min-h-screen flex items-center">
+{{-- HERO WITH RANDOM GALERI PHOTO --}}
+@php $heroFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
+<section class="photo-hero grad-hero relative overflow-hidden min-h-screen flex items-center" @if($heroFoto) style="background-image: linear-gradient(rgba(5,46,22,0.6), rgba(20,83,45,0.8)), url('{{ asset('storage/' . $heroFoto) }}')" @endif>
+
     {{-- Blobs --}}
     <div class="absolute top-20 right-10 w-72 h-72 bg-green-400/10 blob animate-pulse pointer-events-none"></div>
     <div class="absolute bottom-20 left-10 w-56 h-56 bg-green-300/10 blob pointer-events-none" style="animation:pulse 3s infinite 1s"></div>
     <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-green-500/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none"></div>
 
-    <div class="max-w-7xl mx-auto px-4 py-28 relative z-10 w-full">
+    <div class="photo-overlay"></div>
+    <div class="max-w-7xl mx-auto px-4 py-28 relative z-20 w-full">
+
         <div class="max-w-3xl mx-auto text-center">
             {{-- Badge --}}
             <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm font-semibold text-green-200 mb-8">
@@ -54,7 +58,8 @@
     </div>
 
     {{-- Wave --}}
-    <div class="absolute bottom-0 left-0 right-0 pointer-events-none">
+    <div class="absolute bottom-0 left-0 right-0 pointer-events-none z-10">
+
         <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
             <path d="M0 100L48 88.7C96 77.3 192 54.7 288 48C384 41.3 480 50.7 576 56C672 61.3 768 62.7 864 58.7C960 54.7 1056 45.3 1152 45.3C1248 45.3 1344 54.7 1392 59.3L1440 64V100H0Z" fill="#f9fafb"/>
         </svg>
@@ -75,16 +80,19 @@
         <div class="grid md:grid-cols-2 gap-8">
             {{-- SMP --}}
             <div class="card bg-white rounded-3xl overflow-hidden shadow-md border border-gray-100">
-                <div class="grad-smp h-56 relative flex items-end p-7 overflow-hidden">
+@php $smpFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
+                <div class="photo-card h-56 relative flex items-end p-7 overflow-hidden" @if($smpFoto) style="background-image: url('{{ asset('storage/' . $smpFoto) }}')" @endif>
                     <div class="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full translate-x-10 -translate-y-10"></div>
                     <div class="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full -translate-x-8 translate-y-8"></div>
-                    <div class="relative z-10">
+                    <div class="photo-card-overlay"></div>
+                    <div class="relative z-20">
                         <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-3 backdrop-blur">
                             <i class="fas fa-school text-white text-2xl"></i>
                         </div>
                         <span class="text-xs font-bold text-blue-200 uppercase tracking-widest">Jenjang SMP</span>
                     </div>
                 </div>
+
                 <div class="p-7">
                     <h3 class="text-2xl font-extrabold text-gray-900 mb-3">SMP Al-Hikmah</h3>
                     <p class="text-gray-500 text-sm leading-relaxed mb-5">Pendidikan menengah pertama berbasis Islam dengan program tahfidz, bahasa Arab, dan kurikulum nasional terintegrasi.</p>
@@ -101,21 +109,24 @@
 
             {{-- SMA --}}
             <div class="card bg-white rounded-3xl overflow-hidden shadow-md border border-gray-100">
-                <div class="grad-sma h-56 relative flex items-end p-7 overflow-hidden">
+@php $smaFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
+                <div class="photo-card h-56 relative flex items-end p-7 overflow-hidden" @if($smaFoto) style="background-image: url('{{ asset('storage/' . $smaFoto) }}')" @endif>
                     <div class="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full translate-x-10 -translate-y-10"></div>
                     <div class="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full -translate-x-8 translate-y-8"></div>
-                    <div class="relative z-10">
+                    <div class="photo-card-overlay"></div>
+                    <div class="relative z-20">
                         <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-3 backdrop-blur">
                             <i class="fas fa-university text-white text-2xl"></i>
                         </div>
                         <span class="text-xs font-bold text-sky-200 uppercase tracking-widest">Jenjang SMA</span>
                     </div>
                 </div>
+
                 <div class="p-7">
-                    <h3 class="text-2xl font-extrabold text-gray-900 mb-3">SMA Al-Hikmah</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-5">Pendidikan menengah atas dengan jurusan IPA, IPS, dan Bahasa. Persiapan masuk PTN terbaik Indonesia.</p>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-3">SMA Unggulan Al-Hidayah</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-5">Pendidikan menengah atas dengan jurusan IPA,</p>
                     <div class="flex flex-wrap gap-2 mb-6">
-                        @foreach(['IPA','IPS','Bahasa','Olimpiade Sains'] as $f)
+@foreach(['IPA'] as $f)
                         <span class="text-xs font-bold px-3 py-1 rounded-full" style="background:rgba(14,165,233,0.1);color:#0284c7;border:1px solid rgba(14,165,233,0.2)">{{ $f }}</span>
                         @endforeach
                     </div>
@@ -186,12 +197,16 @@
 </section>
 @endif
 
-{{-- CTA --}}
-<section class="py-24 grad-hero relative overflow-hidden">
+{{-- CTA WITH PHOTO --}}
+@php $ctaFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
+<section class="py-24 photo-hero grad-hero relative overflow-hidden" @if($ctaFoto) style="background-image: url('{{ asset('storage/' . $ctaFoto) }}')" @endif>
+
+    <div class="photo-overlay"></div>
     <div class="absolute inset-0 pointer-events-none">
         <div class="absolute top-10 right-10 w-64 h-64 bg-green-400/10 blob"></div>
         <div class="absolute bottom-10 left-10 w-48 h-48 bg-green-300/10 blob"></div>
     </div>
+
     <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
         <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm font-semibold text-green-200 mb-6">
             <span class="dot-pulse"></span> Pendaftaran Dibuka

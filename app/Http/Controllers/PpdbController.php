@@ -9,8 +9,10 @@ class PpdbController extends Controller
 {
     public function index()
     {
-        return view('ppdb');
+        $galeris = \App\Models\Galeri::latest()->take(20)->get();
+        return view('ppdb', compact('galeris'));
     }
+
 
     public function store(Request $request)
     {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Admin') — Al-Hikmah</title>
+    <title>@yield('title', 'Admin') — Al-Hidayah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -43,7 +43,7 @@
                     <i class="fas fa-graduation-cap text-white text-sm"></i>
                 </div>
                 <div>
-                    <div class="font-extrabold text-white text-sm leading-tight">Al-Hikmah</div>
+                    <div class="font-extrabold text-white text-sm leading-tight">Al-Hidayah</div>
                     <div class="text-green-400 text-xs font-medium">Panel Admin</div>
                 </div>
             </div>
@@ -56,7 +56,6 @@
             $navs = [
                 ['admin.dashboard',    'fa-gauge',        'Dashboard'],
                 ['admin.ppdb.index',   'fa-user-plus',    'Data PPDB'],
-                ['admin.berita.index', 'fa-newspaper',    'Berita'],
                 ['admin.galeri.index', 'fa-images',       'Galeri'],
                 ['admin.sekolah.index','fa-school',       'Data Sekolah'],
             ];
@@ -103,7 +102,7 @@
         <header class="bg-white border-b border-slate-100 px-6 py-4 flex items-center justify-between flex-shrink-0 shadow-sm">
             <div>
                 <h1 class="text-lg font-extrabold text-gray-900">@yield('title', 'Dashboard')</h1>
-                <p class="text-xs text-gray-400 mt-0.5 font-medium">Yayasan Pendidikan Al-Hikmah</p>
+                <p class="text-xs text-gray-400 mt-0.5 font-medium">Yayasan Pondok Pesantren Al-Hidayah</p>
             </div>
             <a href="{{ route('home') }}" target="_blank" class="flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-green-600 bg-gray-100 hover:bg-green-50 px-3 py-2 rounded-xl transition-all">
                 <i class="fas fa-globe text-xs"></i> Website

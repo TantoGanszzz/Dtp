@@ -2,16 +2,20 @@
 @section('title', 'Profil Yayasan')
 
 @section('content')
-<section class="grad-hero text-white py-16 relative overflow-hidden">
+@php $profilFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
+<section class="photo-hero grad-hero text-white py-16 relative overflow-hidden" @if($profilFoto) style="background-image: url('{{ asset('storage/' . $profilFoto) }}')" @endif>
+
     <div class="absolute top-0 right-0 w-72 h-72 bg-green-400/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
+    <div class="photo-overlay"></div>
+    <div class="max-w-7xl mx-auto px-4 relative z-20">
+
         <div class="flex items-center gap-3 mb-3">
             <a href="{{ route('home') }}" class="text-green-300 hover:text-white text-sm transition-colors">Beranda</a>
             <i class="fas fa-chevron-right text-green-400 text-xs"></i>
             <span class="text-white text-sm font-medium">Profil Yayasan</span>
         </div>
         <h1 class="text-4xl md:text-5xl font-extrabold mb-3">Profil <span class="text-green-300">Yayasan</span></h1>
-        <p class="text-green-200/80 text-lg">Mengenal lebih dekat Yayasan Pendidikan Al-Hikmah</p>
+        <p class="text-green-200/80 text-lg">Mengenal lebih jauh Yayasan Pondok Pesantren Al-Hidayah</p>
     </div>
 </section>
 
@@ -49,7 +53,7 @@
                     <h2 class="text-2xl font-extrabold text-gray-900">Sejarah Yayasan</h2>
                 </div>
                 <div class="space-y-4 text-gray-600 leading-relaxed">
-                    <p>Yayasan Pendidikan Al-Hikmah didirikan pada tahun <strong class="text-gray-900">1995</strong> oleh KH. Ahmad Fauzi bersama para tokoh masyarakat setempat. Berawal dari sebuah madrasah kecil dengan 30 siswa, kini telah berkembang menjadi lembaga pendidikan Islam terpercaya dengan lebih dari <strong class="text-gray-900">1.200 siswa aktif</strong>.</p>
+                    <p>Yayasan Pondok Pesantren Al-Hidayah didirikan pada tahun <strong class="text-gray-900">1995</strong> oleh KH. Ahmad Fauzi bersama para tokoh masyarakat setempat. Berawal dari sebuah madrasah kecil dengan 30 siswa, kini telah berkembang menjadi lembaga pendidikan Islam terpercaya dengan lebih dari <strong class="text-gray-900">1.200 siswa aktif</strong>.</p>
                     <p>Selama hampir tiga dekade, yayasan ini telah melahirkan ribuan alumni yang tersebar di berbagai penjuru negeri, berkontribusi dalam berbagai bidang kehidupan dengan tetap menjunjung tinggi nilai-nilai keislaman.</p>
                 </div>
                 {{-- Timeline --}}
@@ -158,7 +162,7 @@
                     </div>
                     <div>
                         <div class="font-extrabold text-gray-900">KH. Ahmad Fauzi, M.Pd.I</div>
-                        <div class="text-gray-500 text-sm">Ketua Yayasan Al-Hikmah</div>
+                        <div class="text-gray-500 text-sm">Ketua Yayasan Al-Hidayah</div>
                         <div class="flex gap-1 mt-1">
                             @for($i=0;$i<5;$i++)<i class="fas fa-star text-amber-400 text-xs"></i>@endfor
                         </div>
