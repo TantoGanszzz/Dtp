@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * { scroll-behavior: smooth; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; backface-visibility: hidden; }
 
         /* Base Colors */
         :root {
@@ -85,8 +85,11 @@
         .blob { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
 
         /* PPDB ticker */
-        .ticker { background: linear-gradient(90deg, #14532d, #16a34a, #22c55e, #16a34a, #14532d); background-size: 300% 100%; animation: ticker 4s linear infinite; }
+        .ticker { background: linear-gradient(90deg, #14532d, #16a34a, #22c55e, #16a34a, #14532d); background-size: 300% 100%; animation: ticker 4s linear infinite; color: white !important; -webkit-text-fill-color: white; text-shadow: 0 0 1px rgba(255,255,255,0.8); }
         @keyframes ticker { 0%{background-position:100% 0} 100%{background-position:-100% 0} }
+
+        /* Font fix for hero and white text */
+        .photo-hero *, .grad-hero * { color: white !important; -webkit-text-fill-color: white; -webkit-font-smoothing: antialiased; text-shadow: 0 0 1px rgba(255,255,255,0.5); }
 
         /* Glow */
         .glow-green { box-shadow: 0 0 30px rgba(34,197,94,0.3); }
@@ -106,13 +109,16 @@
         /* Underline deco */
         .title-deco { position:relative; display:inline-block; }
         .title-deco::after { content:''; position:absolute; bottom:-6px; left:0; width:100%; height:4px; background:linear-gradient(90deg,#16a34a,#22c55e,transparent); border-radius:2px; }
+
+        /* Global font rendering fix */
+        * { -webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale !important; text-rendering: optimizeLegibility !important; }
     </style>
 </head>
 <body class="bg-gray-50 antialiased">
 
 {{-- PPDB Ticker --}}
 <div class="ticker text-white text-center py-2 text-xs font-bold tracking-widest uppercase">
-    🎓 &nbsp; PPSB 2024/2025 Resmi Dibuka — Daftarkan Putra-Putri Anda Sekarang &nbsp;
+    🎓 &nbsp; PPSB 2026/2027 Resmi Dibuka — Daftarkan Putra-Putri Anda Sekarang &nbsp;
     <a href="{{ route('ppdb') }}" class="underline underline-offset-2 hover:text-green-200 transition-colors">Daftar di sini →</a>
     &nbsp; 🎓
 </div>
@@ -165,7 +171,7 @@
                 <a href="{{ route('galeri') }}"   class="nav-item text-sm font-semibold text-gray-600 hover:text-green-700">Galeri</a>
                 <a href="{{ route('kontak') }}"   class="nav-item text-sm font-semibold text-gray-600 hover:text-green-700">Kontak</a>
                 <a href="{{ route('ppdb') }}" class="btn-main text-white px-5 py-2.5 rounded-xl font-bold text-sm inline-flex items-center gap-2">
-                    <i class="fas fa-pen-to-square text-xs"></i> Daftar PPDB
+                    <i class="fas fa-pen-to-square text-xs"></i> Daftar PPSB
                 </a>
             </div>
 
@@ -186,7 +192,7 @@
             <a href="{{ route('galeri') }}"     class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-gray-700 hover:bg-green-50 hover:text-green-700 font-semibold text-sm transition-colors">Galeri</a>
             <a href="{{ route('kontak') }}"     class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-gray-700 hover:bg-green-50 hover:text-green-700 font-semibold text-sm transition-colors">Kontak</a>
             <a href="{{ route('ppdb') }}"       class="btn-main text-white px-4 py-2.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 mt-2">
-                <i class="fas fa-pen-to-square text-xs"></i>Daftar PPDB
+                <i class="fas fa-pen-to-square text-xs"></i>Daftar PPSB
             </a>
         </div>
     </div>
@@ -223,13 +229,17 @@
                         <div class="text-green-400 text-xs font-semibold">Pendidikan Islami Unggulan</div>
                     </div>
                 </div>
-                <p class="text-green-200/70 text-sm leading-relaxed mb-6">Mendidik generasi bangsa yang cerdas, berakhlak mulia, dan berdaya saing global sejak 1995.</p>
+                <p class="text-green-200/70 text-sm leading-relaxed mb-6">Mendidik generasi bangsa yang cerdas, berakhlak mulia, dan berdaya saing global sejak 2002.</p>
                 <div class="flex gap-2">
-                    @foreach([['fab fa-facebook-f','#1877f2'],['fab fa-instagram','#e1306c'],['fab fa-youtube','#ff0000'],['fab fa-whatsapp','#25d366']] as $s)
-                    <a href="#" class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm transition-all hover:scale-110 hover:shadow-lg" style="background:{{ $s[1] }}40; border:1px solid {{ $s[1] }}60">
-                        <i class="{{ $s[0] }}"></i>
+                    <a href="https://facebook.com" class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm transition-all hover:scale-110 hover:shadow-lg" style="background:#1877f240; border:1px solid #1877f260">
+                        <i class="fab fa-facebook-f"></i>
                     </a>
-                    @endforeach
+                    <a href="https://instagram.com" class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm transition-all hover:scale-110 hover:shadow-lg" style="background:#e4405f40; border:1px solid #e4405f60">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://youtube.com" class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm transition-all hover:scale-110 hover:shadow-lg" style="background:#ff000040; border:1px solid #ff000060">
+                        <i class="fab fa-youtube"></i>
+                    </a>
                 </div>
             </div>
 
@@ -254,7 +264,7 @@
                             <i class="fas fa-school text-white text-xs"></i>
                         </div>
                         <div>
-                            <div class="text-white text-sm font-bold">SMP Al-Hikmah</div>
+                            <div class="text-white text-sm font-bold">SMP Unggulan Al-Hidayah</div>
                             <div class="text-green-300/60 text-xs">Menengah Pertama</div>
                         </div>
                     </a>
@@ -275,10 +285,10 @@
                 <h4 class="font-bold text-white text-sm mb-4 uppercase tracking-wider">Kontak</h4>
                 <ul class="space-y-3">
                     @foreach([
-                        ['fas fa-location-dot','Jl. Pendidikan No. 1, Kota'],
+                        ['fas fa-location-dot','Jl. Mojosari-Pacet, Gg. Mbah Gepuk,Dsn. Kedung Rejo, Ds. Simbaringin, kec. Kutorejo, Kab. Mojokerto, Jawa Timur 61392'],
                         ['fas fa-phone','(021) 1234-5678'],
-                        ['fab fa-whatsapp','0812-3456-7890'],
-                        ['fas fa-envelope','info@alhikmah.sch.id'],
+                        ['fab fa-whatsapp','0878-9764-0195'],
+                        ['fas fa-envelope','info@alhidayah.sch.id'],
                     ] as $k)
                     <li class="flex items-start gap-3 text-sm text-green-200/70">
                         <i class="{{ $k[0] }} text-green-400 mt-0.5 w-4 text-center flex-shrink-0"></i>{{ $k[1] }}

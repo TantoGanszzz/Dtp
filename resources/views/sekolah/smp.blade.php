@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'SMP Al-Hikmah')
+@section('title', 'SMP Unggulan Al-Hidayah')
 @section('content')
 
 @php $smpHeroFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
@@ -21,7 +21,7 @@
             </div>
             <div>
                 <span class="text-xs font-bold text-blue-200 uppercase tracking-widest">Sekolah Menengah Pertama</span>
-                <h1 class="text-4xl font-extrabold text-white mt-1">{{ $sekolah?->nama ?? 'SMP Al-Hikmah' }}</h1>
+                <h1 class="text-4xl font-extrabold text-white mt-1">{{ $sekolah?->nama ?? 'SMP Unggulan Al-Hidayah' }}</h1>
             </div>
         </div>
     </div>

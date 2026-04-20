@@ -13,10 +13,10 @@
         <div class="flex items-center gap-3 mb-3">
             <a href="{{ route('home') }}" class="text-blue-300 hover:text-white text-sm transition-colors">Beranda</a>
             <i class="fas fa-chevron-right text-blue-400 text-xs"></i>
-            <span class="text-white text-sm font-medium">PPDB Online</span>
+            <span class="text-white text-sm font-medium">PPSB Online</span>
         </div>
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-3">PPDB Online <span class="text-emerald-300">2024/2025</span></h1>
-        <p class="text-blue-200 text-lg">Penerimaan Peserta Didik Baru — Yayasan Unggulan Al-Hidayah</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-3">PPSB Online <span class="text-emerald-300">2026/2027</span></h1>
+        <p class="text-blue-200 text-lg">Penerimaan Peserta Didik Baru — Yayasan Pondok Pesantren Al-Hidayah</p>
     </div>
 </section>
 
@@ -27,18 +27,18 @@
         <div class="lg:col-span-2 space-y-5">
             <div class="bg-white rounded-3xl shadow-md border border-gray-100 p-6">
                 <h3 class="font-extrabold text-gray-900 text-lg mb-5 flex items-center gap-2">
-                    <i class="fas fa-info-circle text-blue-600"></i>Informasi PPDB
+                    <i class="fas fa-info-circle text-blue-600"></i>Informasi PPSB
                 </h3>
                 <div class="space-y-4">
                     @foreach([
-                        ['Periode Pendaftaran','1 Jan – 31 Mar 2024','fa-calendar','blue'],
-                        ['Pengumuman','15 April 2024','fa-bullhorn','emerald'],
-                        ['Daftar Ulang','16 – 30 April 2024','fa-check-circle','blue'],
-                        ['Tahun Ajaran','2024/2025','fa-graduation-cap','emerald'],
+                        ['Periode Pendaftaran','05 Jan – 14 Juni 2026','fa-calendar','blue'],
+                        ['Pengumuman','14 Juni 2026','fa-bullhorn','emerald'],
+                        ['Daftar Ulang','16 – 30 April 2026','fa-check-circle','blue'],
+                        ['Tahun Ajaran','2026/2027','fa-graduation-cap','emerald'],
                     ] as $info)
                     <div class="flex items-start gap-3 p-3 rounded-xl bg-gray-50">
                         <div class="w-9 h-9 {{ $info[3] === 'blue' ? 'bg-blue-100' : 'bg-emerald-100' }} rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fas {{ $info[0] }} {{ $info[3] === 'blue' ? 'text-blue-600' : 'text-emerald-600' }} text-sm"></i>
+                        <i class="fas {{ $info[2] }} {{ $info[3] === 'blue' ? 'text-blue-600' : 'text-emerald-600' }} text-sm"></i>
                         </div>
                         <div>
                             <div class="text-xs text-gray-500 font-medium">{{ $info[1] }}</div>

@@ -34,7 +34,7 @@
                     ['fa-map-marker-alt','Alamat Kantor','Jl. Mbah Gepuk, Kelurahan Simbaringin, Kecamatan Kutorejo, Kota Mojokerto 12345','gradient-card','text-white','#'],
                     ['fab fa-whatsapp','WhatsApp','0812-3456-7890 (Panitia PPSB)','bg-emerald-600','text-white','https://wa.me/6281234567890'],
                     ['fas fa-phone','Telepon Kantor','(021) 1234-5678','bg-blue-100','text-blue-700','tel:02112345678'],
-                    ['fas fa-envelope','Email','info@alhikmah.sch.id','bg-red-100','text-red-700','mailto:info@alhikmah.sch.id'],
+                    ['fas fa-envelope','Email','rifkyfirman552@gmail.com','bg-red-100','text-red-700','mailto:info@alhikmah.sch.id'],
                 ] as $k)
                 <a href="{{ $k[5] }}" class="flex items-start gap-4 p-5 bg-white rounded-2xl shadow-sm border border-gray-100 card-hover group">
                     <div class="w-12 h-12 {{ $k[3] }} rounded-xl flex items-center justify-center flex-shrink-0">

@@ -18,42 +18,26 @@
             {{-- Badge --}}
             <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm font-semibold text-green-200 mb-8">
                 <span class="dot-pulse"></span>
-                PPDB 2024/2025 Sedang Berlangsung
+                PPSB 2026/2027 Sedang Berlangsung
             </div>
 
             <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 tracking-tight">
-                Yayasan Pendidikan
+                Yayasan Pondok Pesantren
                 <span class="block bg-gradient-to-r from-green-300 via-green-400 to-emerald-300 bg-clip-text text-transparent">
-                    Al-Hikmah
+                    Al-Hidayah
                 </span>
             </h1>
             <p class="text-green-100/80 text-lg md:text-xl mb-10 leading-relaxed max-w-2xl mx-auto">
-                Lembaga pendidikan Islam terpercaya sejak 1995. Membentuk generasi cerdas, berakhlak mulia, dan siap menghadapi tantangan global.
+                Lembaga pendidikan Islam terpercaya sejak 2002. Membentuk generasi cerdas, berakhlak mulia, dan siap menghadapi tantangan global.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="{{ route('ppdb') }}" class="btn-main text-white px-8 py-4 rounded-2xl font-extrabold text-base inline-flex items-center gap-2">
-                    <i class="fas fa-pen-to-square"></i> Daftar PPDB Sekarang
+                    <i class="fas fa-pen-to-square"></i> Daftar PPSB Sekarang
                 </a>
                 <a href="{{ route('profil') }}" class="btn-outline text-white px-8 py-4 rounded-2xl font-bold text-base inline-flex items-center gap-2">
                     <i class="fas fa-circle-info"></i> Tentang Kami
                 </a>
             </div>
-        </div>
-
-        {{-- Stats --}}
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20 max-w-4xl mx-auto">
-            @foreach([
-                ['29+', 'Tahun Berdiri', 'fa-calendar-check'],
-                ['1200+', 'Siswa Aktif', 'fa-users'],
-                ['85+', 'Tenaga Pendidik', 'fa-chalkboard-user'],
-                ['95%', 'Lulus PTN', 'fa-trophy'],
-            ] as $s)
-            <div class="glass rounded-2xl p-5 text-center hover:bg-white/15 transition-all">
-                <i class="fas {{ $s[2] }} text-green-300 text-xl mb-3 block"></i>
-                <div class="text-3xl font-extrabold text-white mb-1">{{ $s[0] }}</div>
-                <div class="text-green-200/70 text-xs font-semibold uppercase tracking-wider">{{ $s[1] }}</div>
-            </div>
-            @endforeach
         </div>
     </div>
 
@@ -94,7 +78,7 @@
                 </div>
 
                 <div class="p-7">
-                    <h3 class="text-2xl font-extrabold text-gray-900 mb-3">SMP Al-Hikmah</h3>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-3">SMP Unggulan Al-Hidayah</h3>
                     <p class="text-gray-500 text-sm leading-relaxed mb-5">Pendidikan menengah pertama berbasis Islam dengan program tahfidz, bahasa Arab, dan kurikulum nasional terintegrasi.</p>
                     <div class="flex flex-wrap gap-2 mb-6">
                         @foreach(['Tahfidz Al-Quran','Lab IPA','Bahasa Arab','Ekstrakurikuler'] as $f)
@@ -148,12 +132,12 @@
         </div>
         <div class="grid md:grid-cols-3 gap-6">
             @foreach([
-                ['fa-medal','Akreditasi A','Terakreditasi A oleh BAN-S/M dengan standar pendidikan nasional tertinggi.'],
-                ['fa-book-quran','Berbasis Islam','Mengintegrasikan nilai-nilai Islam dalam setiap aspek pembelajaran.'],
+                ['fa-book-quran','Baca Tulis Al-Quran','Terakreditasi A oleh BAN-S/M dengan standar pendidikan nasional tertinggi.'],
+                ['fa-book-quran','Baca Tulis Kitab Kuning','Mengintegrasikan nilai-nilai Islam dalam setiap aspek pembelajaran.'],
                 ['fa-laptop','Fasilitas Modern','Lab lengkap, perpustakaan digital, dan ruang kelas multimedia.'],
-                ['fa-users-gear','Guru Berpengalaman','85+ tenaga pendidik bersertifikat dengan rata-rata 10 tahun pengalaman.'],
-                ['fa-trophy','Prestasi Gemilang','Ratusan prestasi akademik dan non-akademik tingkat nasional.'],
-                ['fa-heart','Lingkungan Kondusif','Suasana belajar aman, nyaman, dan penuh kasih sayang.'],
+                ['fa-users-gear','Program Kerja Ke Jepang','85+ tenaga pendidik bersertifikat dengan rata-rata 10 tahun pengalaman.'],
+                ['fa-book-quran','Prestasi Gemilang','Ratusan prestasi akademik dan non-akademik tingkat nasional.'],
+                ['fa-heart','Thoriqot Syadziliyah Waqodiriyah Wanaqsabandiyah','Suasana belajar aman, nyaman, dan penuh kasih sayang.'],
             ] as $i => $k)
             <div class="card p-7 rounded-3xl border border-gray-100 bg-white hover:border-green-200 group">
                 <div class="w-14 h-14 grad-green rounded-2xl flex items-center justify-center mb-5 shadow-md group-hover:scale-110 transition-transform glow-green">
@@ -215,7 +199,7 @@
             Daftarkan Putra-Putri Anda <br>
             <span class="bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent">Sekarang Juga!</span>
         </h2>
-        <p class="text-green-200/80 text-lg mb-10 leading-relaxed">PPDB Tahun Ajaran 2024/2025 telah dibuka. Raih kesempatan terbaik bersama Yayasan Al-Hikmah.</p>
+        <p class="text-green-200/80 text-lg mb-10 leading-relaxed">PSDB Tahun Ajaran 2026/2027 telah dibuka. Raih kesempatan terbaik bersama Yayasan Al-Hikmah.</p>
         <a href="{{ route('ppdb') }}" class="btn-main text-white px-10 py-4 rounded-2xl font-extrabold text-lg inline-flex items-center gap-3">
             <i class="fas fa-pen-to-square"></i> Daftar Online Sekarang
         </a>
