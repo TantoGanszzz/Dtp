@@ -34,6 +34,12 @@
             </div>
 
             <div>
+                <label class="block text-sm font-bold text-gray-700 mb-1.5">Deskripsi <span class="text-gray-400 text-xs font-normal">(opsional)</span></label>
+                <textarea name="deskripsi" rows="3" class="input-field @error('deskripsi') border-red-400 @enderror" placeholder="Tulis deskripsi singkat tentang foto ini...">{{ old('deskripsi') }}</textarea>
+                @error('deskripsi')<p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>@enderror
+            </div>
+
+            <div>
                 <label class="block text-sm font-bold text-gray-700 mb-1.5">Upload Foto <span class="text-red-500">*</span></label>
                 <div class="border-2 border-dashed border-gray-200 rounded-xl p-6 text-center hover:border-green-400 transition-colors cursor-pointer" onclick="document.getElementById('fotoInput').click()">
                     <i class="fas fa-cloud-arrow-up text-3xl text-gray-300 mb-2 block"></i>

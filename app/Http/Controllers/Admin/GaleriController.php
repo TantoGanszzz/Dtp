@@ -22,13 +22,19 @@ class GaleriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul'    => 'required|string|max:255',
-            'kategori' => 'required|in:kegiatan,fasilitas,event',
-            'foto'     => 'required|image|max:2048',
+            'judul'     => 'required|string|max:255',
+            'kategori'  => 'required|in:kegiatan,fasilitas,event',
+            'foto'      => 'required|image|max:2048',
+            'deskripsi' => 'nullable|string|max:500',
         ]);
 
         $path = $request->file('foto')->store('galeri', 'public');
-        Galeri::create(['judul' => $request->judul, 'kategori' => $request->kategori, 'foto' => $path]);
+        Galeri::create([
+            'judul'     => $request->judul,
+            'kategori'  => $request->kategori,
+            'foto'      => $path,
+            'deskripsi' => $request->deskripsi,
+        ]);
 
         return redirect()->route('admin.galeri.index')->with('success', 'Foto berhasil ditambahkan.');
     }

@@ -2,11 +2,11 @@
 @section('title', 'Profil Yayasan')
 
 @section('content')
-@php $profilFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
-<section class="photo-hero grad-hero text-white py-16 relative overflow-hidden" @if($profilFoto) style="background-image: url('{{ asset('storage/' . $profilFoto) }}')" @endif>
+@php $profilFoto = 'assets/hero-bg.png'; @endphp
+<section class="photo-hero islamic-pattern relative overflow-hidden text-white py-20" style="background-image: linear-gradient(135deg, rgba(5,46,22,0.7), rgba(20,83,45,0.6), rgba(22,101,52,0.65)), url('{{ asset('storage/' . $profilFoto) }}'); background-size: cover; background-position: center;">
 
     <div class="absolute top-0 right-0 w-72 h-72 bg-green-400/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-    <div class="photo-overlay"></div>
+    <div class="photo-overlay" style="background: linear-gradient(135deg, rgba(5,46,22,0.45), rgba(20,83,45,0.35), rgba(22,101,52,0.40));"></div>
     <div class="max-w-7xl mx-auto px-4 relative z-20">
 
         <div class="flex items-center gap-3 mb-3">
@@ -50,7 +50,7 @@
         <div class="lg:col-span-3 space-y-10">
 
             {{-- Sejarah --}}
-            <section id="sejarah" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8">
+            <section id="sejarah" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-history text-white"></i>
@@ -65,7 +65,7 @@
             </section>
 
             {{-- Visi Misi --}}
-            <section id="visi-misi" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8">
+            <section id="visi-misi" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-eye text-white"></i>
@@ -104,7 +104,7 @@
             </section>
 
             {{-- Struktur --}}
-            <section id="struktur" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8">
+            <section id="struktur" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-sitemap text-white"></i>
@@ -133,7 +133,7 @@
             </section>
 
             {{-- Kegiatan Harian --}}
-            <section id="kegiatan-harian" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8">
+            <section id="kegiatan-harian" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-clock text-white"></i>
@@ -182,7 +182,7 @@
             </section>
 
             {{-- Kegiatan Mingguan --}}
-            <section id="kegiatan-mingguan" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8">
+            <section id="kegiatan-mingguan" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-calendar-week text-white"></i>
@@ -210,7 +210,7 @@
             </section>
 
             {{-- Kegiatan Bulanan --}}
-            <section id="kegiatan-bulanan" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8">
+            <section id="kegiatan-bulanan" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-calendar-alt text-white"></i>
@@ -234,7 +234,7 @@
             </section>
 
             {{-- Kegiatan Tahunan --}}
-            <section id="kegiatan-tahunan" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8">
+            <section id="kegiatan-tahunan" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-calendar-days text-white"></i>
@@ -260,7 +260,7 @@
             </section>
 
             {{-- Ekstrakurikuler --}}
-            <section id="ekstrakurikuler" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8">
+            <section id="ekstrakurikuler" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-star text-white"></i>
@@ -292,7 +292,7 @@
             </section>
 
             {{-- Fasilitas --}}
-            <section id="fasilitas" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8">
+            <section id="fasilitas" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-building text-white"></i>

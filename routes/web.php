@@ -20,14 +20,23 @@ Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
 Route::get('/sekolah/smp', [SekolahController::class, 'smp'])->name('sekolah.smp');
 Route::get('/sekolah/sma', [SekolahController::class, 'sma'])->name('sekolah.sma');
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
-Route::get('/ppdb', [PpdbController::class, 'index'])->name('ppdb');
-Route::post('/ppdb', [PpdbController::class, 'store'])->name('ppdb.store');
+
+// PPDB — Wajib login dulu sebagai user
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::get('/ppdb', [PpdbController::class, 'index'])->name('ppdb');
+    Route::post('/ppdb', [PpdbController::class, 'store'])->name('ppdb.store');
+});
+
+// Profil Akun — Wajib login
+Route::get('/profil-akun', function () {
+    return view('profil-akun');
+})->middleware('auth')->name('profil.akun');
 
 // Auth Routes
 require base_path('routes/auth.php');
 
-// Admin Routes
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+// Admin Routes — Hanya admin
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/ppdb', [AdminPpdb::class, 'index'])->name('ppdb.index');

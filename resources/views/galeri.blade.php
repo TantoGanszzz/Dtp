@@ -2,9 +2,11 @@
 @section('title', 'Galeri Foto')
 
 @section('content')
-<section class="grad-hero text-white py-16 relative overflow-hidden">
+@php $galeriFoto = 'assets/hero-bg.png'; @endphp
+<section class="photo-hero islamic-pattern relative overflow-hidden text-white py-20" style="background-image: linear-gradient(135deg, rgba(5,46,22,0.7), rgba(20,83,45,0.6), rgba(22,101,52,0.65)), url('{{ asset('storage/' . $galeriFoto) }}'); background-size: cover; background-position: center;">
     <div class="absolute top-0 right-0 w-72 h-72 bg-green-400/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
+    <div class="photo-overlay" style="background: linear-gradient(135deg, rgba(5,46,22,0.45), rgba(20,83,45,0.35), rgba(22,101,52,0.40));"></div>
+    <div class="max-w-7xl mx-auto px-4 relative z-20">
         <div class="flex items-center gap-3 mb-3">
             <a href="{{ route('home') }}" class="text-green-300 hover:text-white text-sm transition-colors">Beranda</a>
             <i class="fas fa-chevron-right text-green-400 text-xs"></i>
@@ -37,6 +39,9 @@
                 <div class="text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <span class="text-xs bg-green-500 px-2.5 py-1 rounded-full uppercase font-bold">{{ $g->kategori }}</span>
                     <p class="font-bold text-sm mt-2 leading-tight">{{ $g->judul }}</p>
+                    @if($g->deskripsi)
+                    <p class="text-white/80 text-xs mt-1 leading-snug line-clamp-2">{{ $g->deskripsi }}</p>
+                    @endif
                 </div>
             </div>
         </div>

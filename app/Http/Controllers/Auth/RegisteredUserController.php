@@ -40,12 +40,14 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'user', // Pendaftar baru selalu menjadi 'user'
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Arahkan user baru langsung ke halaman PPDB
+        return redirect(route('ppdb', absolute: false));
     }
 }

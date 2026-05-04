@@ -2,12 +2,12 @@
 @section('title', 'SMP Unggulan Al-Hidayah')
 @section('content')
 
-@php $smpHeroFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
-<section class="photo-hero grad-smp relative overflow-hidden py-20" @if($smpHeroFoto) style="background-image: url('{{ asset('storage/' . $smpHeroFoto) }}')" @endif>
+@php $smpHeroFoto = 'assets/hero-bg.png'; @endphp
+<section class="photo-hero islamic-pattern relative overflow-hidden py-24" style="background-image: linear-gradient(135deg, rgba(5,46,22,0.7), rgba(20,83,45,0.6), rgba(22,101,52,0.65)), url('{{ asset('storage/' . $smpHeroFoto) }}'); background-size: cover; background-position: center;">
 
     <div class="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-300/10 rounded-full -translate-x-1/2 translate-y-1/2 blur-3xl pointer-events-none"></div>
-    <div class="photo-overlay"></div>
+    <div class="photo-overlay" style="background: linear-gradient(135deg, rgba(5,46,22,0.45), rgba(20,83,45,0.35), rgba(22,101,52,0.40));"></div>
     <div class="max-w-7xl mx-auto px-4 relative z-20">
 
         <div class="flex items-center gap-3 mb-4 text-blue-200 text-sm">
@@ -40,7 +40,7 @@
         <div class="lg:col-span-2 space-y-6">
 
             {{-- Profil --}}
-            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 reveal">
                 <div class="flex items-center gap-3 mb-5">
                     <div class="w-10 h-10 grad-smp rounded-xl flex items-center justify-center">
                         <i class="fas fa-circle-info text-white text-sm"></i>
@@ -51,7 +51,7 @@
             </div>
 
             {{-- Fasilitas --}}
-            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 reveal">
                 <div class="flex items-center gap-3 mb-5">
                     <div class="w-10 h-10 grad-smp rounded-xl flex items-center justify-center">
                         <i class="fas fa-building text-white text-sm"></i>
@@ -135,7 +135,7 @@
         <div class="space-y-5">
 
             {{-- Foto Sekolah --}}
-@php $sidebarFoto = $galeris->isNotEmpty() ? $galeris->random()->foto : ''; @endphp
+@php $sidebarFoto = ''; @endphp
             @if($sekolah->foto)
             <div class="rounded-3xl overflow-hidden shadow-md">
                 <img src="{{ asset('storage/'.$sekolah->foto) }}" alt="{{ $sekolah->nama }}" class="w-full h-52 object-cover">

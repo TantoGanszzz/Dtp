@@ -18,6 +18,7 @@
                     <th class="text-left px-5 py-3 font-bold">TTL</th>
                     <th class="text-left px-5 py-3 font-bold">Sekolah</th>
                     <th class="text-left px-5 py-3 font-bold">No. HP</th>
+                    <th class="text-left px-5 py-3 font-bold">Dokumen</th>
                     <th class="text-left px-5 py-3 font-bold">Status</th>
                     <th class="text-left px-5 py-3 font-bold">Aksi</th>
                 </tr>
@@ -35,6 +36,18 @@
                         <span class="badge-{{ strtolower($p->pilihan_sekolah) }} text-xs font-bold px-2.5 py-1 rounded-full">{{ $p->pilihan_sekolah }}</span>
                     </td>
                     <td class="px-5 py-4 text-gray-500 text-xs font-medium">{{ $p->no_hp }}</td>
+                    <td class="px-5 py-4">
+                        <div class="flex flex-wrap gap-1">
+                            @if($p->ijazah) <a href="{{ asset('storage/'.$p->ijazah) }}" target="_blank" class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full hover:bg-blue-200" title="Ijazah"><i class="fas fa-file-alt"></i> Ijazah</a> @endif
+                            @if($p->akta_kelahiran) <a href="{{ asset('storage/'.$p->akta_kelahiran) }}" target="_blank" class="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full hover:bg-indigo-200" title="Akta Kelahiran"><i class="fas fa-file-alt"></i> Akta</a> @endif
+                            @if($p->pas_foto) <a href="{{ asset('storage/'.$p->pas_foto) }}" target="_blank" class="text-[10px] bg-teal-100 text-teal-700 px-2 py-0.5 rounded-full hover:bg-teal-200" title="Pas Foto"><i class="fas fa-image"></i> Foto</a> @endif
+                            @if($p->kk) <a href="{{ asset('storage/'.$p->kk) }}" target="_blank" class="text-[10px] bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full hover:bg-purple-200" title="Kartu Keluarga"><i class="fas fa-file-alt"></i> KK</a> @endif
+                            @if($p->surat_sehat) <a href="{{ asset('storage/'.$p->surat_sehat) }}" target="_blank" class="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full hover:bg-emerald-200" title="Surat Sehat"><i class="fas fa-file-medical"></i> Sehat</a> @endif
+                            @if(!$p->ijazah && !$p->akta_kelahiran && !$p->pas_foto && !$p->kk && !$p->surat_sehat)
+                                <span class="text-[10px] text-gray-400 italic">Tidak ada</span>
+                            @endif
+                        </div>
+                    </td>
                     <td class="px-5 py-4">
                         <form action="{{ route('admin.ppdb.update', $p) }}" method="POST">
                             @csrf @method('PATCH')
@@ -56,7 +69,7 @@
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="7" class="px-5 py-14 text-center">
+                <tr><td colspan="8" class="px-5 py-14 text-center">
                     <i class="fas fa-inbox text-4xl text-slate-200 mb-3 block"></i>
                     <span class="text-gray-400 font-semibold text-sm">Belum ada data pendaftar</span>
                 </td></tr>

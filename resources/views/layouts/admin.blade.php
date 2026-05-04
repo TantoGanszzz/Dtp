@@ -39,8 +39,8 @@
         {{-- Logo --}}
         <div class="px-5 py-5 border-b border-white/10">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 grad-green rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
-                    <i class="fas fa-graduation-cap text-white text-sm"></i>
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 bg-white overflow-hidden p-0.5">
+                    <img src="{{ asset('logo.jpg') }}" alt="Logo" class="w-full h-full object-contain">
                 </div>
                 <div>
                     <div class="font-extrabold text-white text-sm leading-tight">Al-Hidayah</div>

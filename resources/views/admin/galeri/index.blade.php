@@ -19,7 +19,12 @@
             </div>
         </div>
         <div class="p-4">
-            <p class="font-bold text-gray-900 text-sm truncate mb-3">{{ $g->judul }}</p>
+            <p class="font-bold text-gray-900 text-sm truncate mb-1">{{ $g->judul }}</p>
+            @if($g->deskripsi)
+            <p class="text-gray-500 text-xs line-clamp-2 mb-3">{{ $g->deskripsi }}</p>
+            @else
+            <div class="mb-3"></div>
+            @endif
             <form action="{{ route('admin.galeri.destroy', $g) }}" method="POST" onsubmit="return confirm('Hapus foto ini?')">
                 @csrf @method('DELETE')
                 <button type="submit" class="text-red-500 hover:text-red-700 text-xs font-bold flex items-center gap-1.5 transition-colors">
