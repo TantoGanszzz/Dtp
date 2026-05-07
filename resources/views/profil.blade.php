@@ -115,7 +115,7 @@
                     @foreach([
                         ['Pengasuh Yayasan', 'KH.R.Mashadi Prawiranegara',      'grad-green',    'text-white'],
                         ['Sekretaris',    '- ',         'bg-gray-100',   'text-gray-900'],
-                        ['Bendahara',     '- ',          'bg-gray-100',   'text-gray-900'],
+                        ['Bendahara',     'Lu’lu’ul Maknun',          'bg-gray-100',   'text-gray-900'],
                         ['Kepala SMP',    'Sulistyowati,S.Pd',     'bg-green-50',   'text-green-900'],
                         ['Kepala SMA',    'Muhtarul Aziz,S.E ',       'bg-green-50',   'text-green-900'],
                     ] as $s)

@@ -169,8 +169,8 @@
                     <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center mb-4">
                         <i class="fas fa-user-plus text-white"></i>
                     </div>
-                    <h3 class="font-extrabold text-white text-lg mb-2">Daftar PPDB</h3>
-                    <p class="text-blue-200 text-sm mb-4 leading-relaxed">Pendaftaran siswa baru SMP Al-Hikmah telah dibuka!</p>
+                    <h3 class="font-extrabold text-white text-lg mb-2">Daftar PPSB</h3>
+                    <p class="text-blue-200 text-sm mb-4 leading-relaxed">Pendaftaran siswa baru SMP Unggulan Al-Hidayah telah dibuka!</p>
                     <a href="{{ route('ppdb') }}" class="block text-center bg-white text-blue-800 py-2.5 rounded-xl font-extrabold text-sm hover:bg-blue-50 transition-colors">
                         Daftar Sekarang
                     </a>
@@ -183,8 +183,8 @@
                 <div class="space-y-3">
                     @foreach([
                         ['fa-graduation-cap', 'Jenjang',    'SMP (Kelas 7-9)'],
-                        ['fa-clock',          'Jam Belajar','07.00 – 15.00 WIB'],
-                        ['fa-star',           'Akreditasi', 'A (Sangat Baik)'],
+                        ['fa-clock',          'Jam Belajar','07.00 – 13.00 WIB'],
+                        ['fa-star',           'Akreditasi', 'B (Baik)'],
                     ] as $info)
                     <div class="flex items-center gap-3">
                         <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
