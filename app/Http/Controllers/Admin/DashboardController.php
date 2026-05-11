@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Berita;
 use App\Models\Galeri;
 use App\Models\Ppdb;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $stats = [
             'ppdb'   => Ppdb::count(),
@@ -17,7 +18,15 @@ class DashboardController extends Controller
             'galeri' => Galeri::count(),
             'pending' => Ppdb::where('status', 'pending')->count(),
         ];
-        $ppdb_terbaru = Ppdb::latest()->take(5)->get();
+        
+        $query = Ppdb::latest();
+        
+        if ($request->filled('sekolah') && in_array($request->sekolah, ['SMA', 'SMP'])) {
+            $query->where('pilihan_sekolah', $request->sekolah);
+        }
+        
+        $ppdb_terbaru = $query->paginate(30)->withQueryString();
+
         return view('admin.dashboard', compact('stats', 'ppdb_terbaru'));
     }
 }

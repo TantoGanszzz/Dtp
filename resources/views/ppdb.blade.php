@@ -96,11 +96,11 @@
 
                     <div class="grid md:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Tempat Lahir <span class="text-red-500">*</span></label>
-                            <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}"
-                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:ring-0 focus:border-green-500 transition-colors text-sm @error('tempat_lahir') border-red-400 @enderror"
-                                placeholder="Kota kelahiran">
-                            @error('tempat_lahir')<p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>@enderror
+                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Kota Tempat Lahir <span class="text-red-500">*</span></label>
+                            <select id="kota_lahir" class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:ring-0 focus:border-green-500 transition-colors text-sm" required>
+                                <option value="">-- Sedang Memuat Daftar Kota... --</option>
+                            </select>
+                            <input type="hidden" name="tempat_lahir" id="tempat_lahir_name">
                         </div>
                         <div>
                             <label class="block text-sm font-bold text-gray-700 mb-1.5">Tanggal Lahir <span class="text-red-500">*</span></label>
@@ -110,12 +110,36 @@
                         </div>
                     </div>
 
+                    <div class="grid md:grid-cols-3 gap-5">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Provinsi <span class="text-red-500">*</span></label>
+                            <select id="provinsi" class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:ring-0 focus:border-green-500 transition-colors text-sm" required>
+                                <option value="">-- Pilih Provinsi --</option>
+                            </select>
+                            <input type="hidden" name="provinsi_name" id="provinsi_name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Kabupaten/Kota <span class="text-red-500">*</span></label>
+                            <select id="kabupaten" class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:ring-0 focus:border-green-500 transition-colors text-sm disabled:bg-gray-100" disabled required>
+                                <option value="">-- Pilih Kabupaten --</option>
+                            </select>
+                            <input type="hidden" name="kabupaten_name" id="kabupaten_name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Kecamatan <span class="text-red-500">*</span></label>
+                            <select id="kecamatan" class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:ring-0 focus:border-green-500 transition-colors text-sm disabled:bg-gray-100" disabled required>
+                                <option value="">-- Pilih Kecamatan --</option>
+                            </select>
+                            <input type="hidden" name="kecamatan_name" id="kecamatan_name">
+                        </div>
+                    </div>
+
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1.5">Alamat Lengkap <span class="text-red-500">*</span></label>
-                        <textarea name="alamat" rows="3"
-                            class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:ring-0 focus:border-green-500 transition-colors text-sm resize-none @error('alamat') border-red-400 @enderror"
-                            placeholder="Jalan, RT/RW, Kelurahan, Kecamatan, Kota">{{ old('alamat') }}</textarea>
-                        @error('alamat')<p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>@enderror
+                        <label class="block text-sm font-bold text-gray-700 mb-1.5">Alamat Jalan / Detail <span class="text-red-500">*</span></label>
+                        <textarea name="alamat_detail" rows="2"
+                            class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:ring-0 focus:border-green-500 transition-colors text-sm resize-none @error('alamat_detail') border-red-400 @enderror"
+                            placeholder="Nama jalan, gang, RT/RW, nomor rumah" required>{{ old('alamat_detail') }}</textarea>
+                        @error('alamat_detail')<p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>@enderror
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-5">
@@ -124,8 +148,8 @@
                             <select name="pilihan_sekolah"
                                 class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:ring-0 focus:border-green-500 transition-colors text-sm @error('pilihan_sekolah') border-red-400 @enderror">
                                 <option value="">-- Pilih Sekolah --</option>
-                                <option value="SMP" {{ old('pilihan_sekolah') == 'SMP' ? 'selected' : '' }}>SMP Al-Hikmah</option>
-                                <option value="SMA" {{ old('pilihan_sekolah') == 'SMA' ? 'selected' : '' }}>SMA Al-Hikmah</option>
+                                <option value="SMP" {{ old('pilihan_sekolah') == 'SMP' ? 'selected' : '' }}>SMP Unggulan Al-Hidayah</option>
+                                <option value="SMA" {{ old('pilihan_sekolah') == 'SMA' ? 'selected' : '' }}>SMA Unggulan Al-Hidayah</option>
                             </select>
                             @error('pilihan_sekolah')<p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>@enderror
                         </div>
@@ -190,4 +214,109 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const provSelect = document.getElementById('provinsi');
+        const kabSelect = document.getElementById('kabupaten');
+        const kecSelect = document.getElementById('kecamatan');
+
+        const provName = document.getElementById('provinsi_name');
+        const kabName = document.getElementById('kabupaten_name');
+        const kecName = document.getElementById('kecamatan_name');
+
+        const kotaLahirSelect = document.getElementById('kota_lahir');
+        const tempatLahirName = document.getElementById('tempat_lahir_name');
+
+        // Fetch Provinces for Alamat
+        fetch('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json')
+            .then(response => response.json())
+            .then(provinces => {
+                provinces.forEach(province => {
+                    let optionAlamat = new Option(province.name, province.id);
+                    provSelect.add(optionAlamat);
+                });
+            })
+            .catch(err => console.error("Gagal load provinsi", err));
+
+        // When Province changes
+        provSelect.addEventListener('change', function() {
+            provName.value = this.options[this.selectedIndex].text;
+            
+            // Reset children
+            kabSelect.innerHTML = '<option value="">-- Pilih Kabupaten --</option>';
+            kecSelect.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+            kabSelect.disabled = true;
+            kecSelect.disabled = true;
+            kabName.value = '';
+            kecName.value = '';
+
+            if (this.value) {
+                kabSelect.disabled = false;
+                fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/regencies/${this.value}.json`)
+                    .then(response => response.json())
+                    .then(regencies => {
+                        regencies.forEach(regency => {
+                            let option = new Option(regency.name, regency.id);
+                            kabSelect.add(option);
+                        });
+                    });
+            }
+        });
+
+        // When Kabupaten changes
+        kabSelect.addEventListener('change', function() {
+            kabName.value = this.options[this.selectedIndex].text;
+            
+            // Reset children
+            kecSelect.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+            kecSelect.disabled = true;
+            kecName.value = '';
+
+            if (this.value) {
+                kecSelect.disabled = false;
+                fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/districts/${this.value}.json`)
+                    .then(response => response.json())
+                    .then(districts => {
+                        districts.forEach(district => {
+                            let option = new Option(district.name, district.id);
+                            kecSelect.add(option);
+                        });
+                    });
+            }
+        });
+
+        // When Kecamatan changes
+        kecSelect.addEventListener('change', function() {
+            if (this.value) {
+                kecName.value = this.options[this.selectedIndex].text;
+            } else {
+                kecName.value = '';
+            }
+        });
+
+        // --- Logic Tempat Lahir ---
+        // Fetch all cities from local JSON
+        fetch('{{ asset('cities.json') }}')
+            .then(response => response.json())
+            .then(cities => {
+                kotaLahirSelect.innerHTML = '<option value="">-- Pilih Kota Lahir --</option>';
+                cities.forEach(city => {
+                    let option = new Option(city.name, city.id);
+                    kotaLahirSelect.add(option);
+                });
+            })
+            .catch(err => {
+                kotaLahirSelect.innerHTML = '<option value="">-- Gagal memuat daftar kota --</option>';
+            });
+
+        kotaLahirSelect.addEventListener('change', function() {
+            if (this.value) {
+                tempatLahirName.value = this.options[this.selectedIndex].text;
+            } else {
+                tempatLahirName.value = '';
+            }
+        });
+    });
+</script>
 @endsection

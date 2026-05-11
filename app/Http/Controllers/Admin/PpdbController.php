@@ -11,9 +11,15 @@ use Illuminate\Support\Facades\Mail;
 
 class PpdbController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $ppdbs = Ppdb::latest()->paginate(15);
+        $query = Ppdb::latest();
+        
+        if ($request->filled('sekolah') && in_array($request->sekolah, ['SMA', 'SMP'])) {
+            $query->where('pilihan_sekolah', $request->sekolah);
+        }
+        
+        $ppdbs = $query->paginate(15)->withQueryString();
         return view('admin.ppdb.index', compact('ppdbs'));
     }
 

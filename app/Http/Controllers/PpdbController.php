@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ppdb;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PpdbController extends Controller
 {
@@ -13,6 +14,11 @@ class PpdbController extends Controller
         return view('ppdb', compact('galeris'));
     }
 
+    public function riwayat()
+    {
+        $riwayat = Ppdb::where('user_id', Auth::id())->latest()->get();
+        return view('ppdb-riwayat', compact('riwayat'));
+    }
 
     public function store(Request $request)
     {
@@ -20,7 +26,10 @@ class PpdbController extends Controller
             'nama_lengkap'    => 'required|string|max:255',
             'tempat_lahir'    => 'required|string|max:100',
             'tanggal_lahir'   => 'required|date',
-            'alamat'          => 'required|string',
+            'provinsi_name'   => 'required|string',
+            'kabupaten_name'  => 'required|string',
+            'kecamatan_name'  => 'required|string',
+            'alamat_detail'   => 'required|string',
             'pilihan_sekolah' => 'required|in:SMP,SMA',
             'no_hp'           => 'required|string|max:20',
             'email'           => 'required|email|max:255',
@@ -38,8 +47,18 @@ class PpdbController extends Controller
             }
         }
 
+        // Gabungkan alamat
+        $alamat_lengkap = $request->alamat_detail . ', Kec. ' . $request->kecamatan_name . ', ' . $request->kabupaten_name . ', Provinsi ' . $request->provinsi_name;
+        $validatedData['alamat'] = $alamat_lengkap;
+        
+        // Hapus field temporary yang tidak ada di database
+        unset($validatedData['provinsi_name'], $validatedData['kabupaten_name'], $validatedData['kecamatan_name'], $validatedData['alamat_detail']);
+
+        // Simpan user_id agar bisa dilihat di riwayat
+        $validatedData['user_id'] = Auth::id();
+
         Ppdb::create($validatedData);
 
-        return redirect()->route('ppdb')->with('success', 'Pendaftaran berhasil! Kami akan menghubungi Anda segera.');
+        return redirect()->route('ppdb.riwayat')->with('success', 'Pendaftaran berhasil! Kami akan menghubungi Anda segera.');
     }
 }

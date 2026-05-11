@@ -39,11 +39,22 @@
 
 {{-- Tabel --}}
 <div class="card-admin overflow-hidden">
-    <div class="flex justify-between items-center px-6 py-4 border-b border-slate-100">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center px-6 py-4 border-b border-slate-100 gap-3">
         <h2 class="font-extrabold text-gray-900">Pendaftar PPSB Terbaru</h2>
-        <a href="{{ route('admin.ppdb.index') }}" class="text-green-600 text-xs font-bold hover:text-green-800 flex items-center gap-1 transition-colors">
-            Lihat Semua <i class="fas fa-arrow-right text-xs"></i>
-        </a>
+        
+        <div class="flex items-center gap-4">
+            <form method="GET" action="{{ route('admin.dashboard') }}" id="filterForm">
+                <select name="sekolah" onchange="document.getElementById('filterForm').submit()" class="text-xs border-gray-200 rounded-lg focus:ring-green-500 focus:border-green-500 py-1.5 pl-3 pr-8 font-medium text-gray-600">
+                    <option value="">Semua Tingkat</option>
+                    <option value="SMP" {{ request('sekolah') == 'SMP' ? 'selected' : '' }}>SMP</option>
+                    <option value="SMA" {{ request('sekolah') == 'SMA' ? 'selected' : '' }}>SMA</option>
+                </select>
+            </form>
+            
+            <a href="{{ route('admin.ppdb.index') }}" class="text-green-600 text-xs font-bold hover:text-green-800 flex items-center gap-1 transition-colors">
+                Kelola PPDB <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+        </div>
     </div>
     <div class="overflow-x-auto">
         <table class="w-full text-sm">
@@ -78,5 +89,10 @@
             </tbody>
         </table>
     </div>
+    @if($ppdb_terbaru->hasPages())
+    <div class="px-6 py-4 border-t border-slate-100">
+        {{ $ppdb_terbaru->links() }}
+    </div>
+    @endif
 </div>
 @endsection

@@ -18,44 +18,85 @@
 </section>
 
 <div class="max-w-7xl mx-auto px-4 py-12">
-    {{-- Filter --}}
-    <div class="flex flex-wrap gap-3 mb-10 justify-center">
-        <a href="{{ route('galeri') }}" class="px-6 py-2.5 rounded-2xl font-bold text-sm transition-all {{ !request('kategori') ? 'grad-green text-white shadow-lg' : 'bg-white text-gray-600 border border-gray-200 hover:border-green-300 hover:text-green-700' }}">
-            <i class="fas fa-th mr-2"></i>Semua
-        </a>
-        @foreach(['kegiatan' => 'fa-running', 'fasilitas' => 'fa-building', 'event' => 'fa-calendar-star'] as $kat => $icon)
-        <a href="{{ route('galeri', ['kategori' => $kat]) }}" class="px-6 py-2.5 rounded-2xl font-bold text-sm transition-all capitalize {{ request('kategori') == $kat ? 'grad-green text-white shadow-lg' : 'bg-white text-gray-600 border border-gray-200 hover:border-green-300 hover:text-green-700' }}">
-            <i class="fas {{ $icon }} mr-2"></i>{{ ucfirst($kat) }}
-        </a>
-        @endforeach
-    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <!-- Kolom Galeri (Kiri, 8/12 bagian) -->
+        <div class="lg:col-span-8">
+            @if($galeris->count())
+            <div class="flex flex-col gap-6 justify-start">
+                @foreach($galeris as $g)
+                <div class="flex flex-col md:flex-row gap-5 group">
+                    <!-- Image Container -->
+                    <div class="w-full md:w-64 shrink-0">
+                        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100">
+                            <img src="{{ asset('storage/' . $g->foto) }}" alt="{{ $g->judul }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    
+                    <!-- Content Container -->
+                    <div class="flex flex-col justify-center py-2">
+                        <div>
+                            <span class="text-xs bg-green-500 text-white px-2.5 py-1 rounded-full uppercase font-bold">{{ $g->kategori }}</span>
+                        </div>
+                        <p class="font-bold text-sm mt-2 leading-tight text-gray-900">{{ $g->judul }}</p>
+                        @if($g->deskripsi)
+                        <p class="text-gray-600 text-xs mt-1 leading-snug line-clamp-2">{{ $g->deskripsi }}</p>
+                        @endif
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <div class="mt-10 flex justify-center">{{ $galeris->links() }}</div>
+            @else
+            <div class="text-center py-24 bg-white rounded-3xl border border-gray-100">
+                <div class="w-24 h-24 bg-green-50 rounded-3xl flex items-center justify-center mx-auto mb-5">
+                    <i class="fas fa-images text-green-200 text-4xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-400 mb-2">Belum Ada Foto</h3>
+                <p class="text-gray-400 text-sm">Foto akan segera ditambahkan.</p>
+            </div>
+            @endif
+        </div>
 
-    @if($galeris->count())
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        @foreach($galeris as $g)
-        <div class="relative group overflow-hidden rounded-2xl shadow-md aspect-square card">
-            <img src="{{ asset('storage/' . $g->foto) }}" alt="{{ $g->judul }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-4">
-                <div class="text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <span class="text-xs bg-green-500 px-2.5 py-1 rounded-full uppercase font-bold">{{ $g->kategori }}</span>
-                    <p class="font-bold text-sm mt-2 leading-tight">{{ $g->judul }}</p>
-                    @if($g->deskripsi)
-                    <p class="text-white/80 text-xs mt-1 leading-snug line-clamp-2">{{ $g->deskripsi }}</p>
-                    @endif
+        <!-- Kolom Sidebar (Kanan, 4/12 bagian) -->
+        <div class="lg:col-span-4 space-y-8">
+            
+            <!-- Pencarian & Kategori -->
+            <div class="bg-white rounded-3xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100/50">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <i class="fas fa-folder-open text-green-500"></i> Kategori
+                </h3>
+                
+                <div class="flex flex-col gap-2">
+                    <a href="{{ route('galeri') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all {{ !request('kategori') ? 'bg-green-50 text-green-600 font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-green-600' }}">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-th w-5 text-center"></i>
+                            <span>Semua</span>
+                        </div>
+                    </a>
+                    
+                    @foreach(['kegiatan' => 'fa-running', 'fasilitas' => 'fa-building', 'event' => 'fa-calendar-star'] as $kat => $icon)
+                    <a href="{{ route('galeri', ['kategori' => $kat]) }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all capitalize {{ request('kategori') == $kat ? 'bg-green-50 text-green-600 font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-green-600' }}">
+                        <div class="flex items-center gap-3">
+                            <i class="fas {{ $icon }} w-5 text-center"></i>
+                            <span>{{ ucfirst($kat) }}</span>
+                        </div>
+                    </a>
+                    @endforeach
                 </div>
             </div>
+
+            <!-- Kontak Info -->
+            <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-3xl p-6 text-white shadow-lg shadow-green-500/20 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+                <h3 class="text-lg font-bold mb-2 relative z-10">Punya Pertanyaan?</h3>
+                <p class="text-green-100 text-sm mb-5 relative z-10">Hubungi kami untuk informasi lebih lanjut mengenai kegiatan yayasan.</p>
+                <a href="{{ route('kontak') }}" class="block text-center bg-white text-green-600 font-bold py-3 rounded-xl hover:bg-green-50 transition-colors relative z-10 shadow-sm">
+                    Hubungi Kami
+                </a>
+            </div>
+
         </div>
-        @endforeach
     </div>
-    <div class="mt-10 flex justify-center">{{ $galeris->links() }}</div>
-    @else
-    <div class="text-center py-24">
-        <div class="w-24 h-24 bg-green-50 rounded-3xl flex items-center justify-center mx-auto mb-5">
-            <i class="fas fa-images text-green-200 text-4xl"></i>
-        </div>
-        <h3 class="text-xl font-bold text-gray-400 mb-2">Belum Ada Foto</h3>
-        <p class="text-gray-400 text-sm">Foto akan segera ditambahkan.</p>
-    </div>
-    @endif
 </div>
 @endsection

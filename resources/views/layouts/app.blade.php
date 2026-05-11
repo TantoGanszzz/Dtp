@@ -230,6 +230,11 @@
                             <a href="{{ route('profil.akun') }}" class="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-600 hover:bg-green-50 hover:text-green-700 font-semibold transition-colors">
                                 <i class="fas fa-id-card text-xs w-4"></i>Profil Saya
                             </a>
+                            @if(auth()->user()->isUser())
+                            <a href="{{ route('ppdb.riwayat') }}" class="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-600 hover:bg-green-50 hover:text-green-700 font-semibold transition-colors">
+                                <i class="fas fa-clipboard-list text-xs w-4"></i>Riwayat PPSB
+                            </a>
+                            @endif
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="w-full text-left flex items-center gap-2 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 font-semibold transition-colors">
@@ -278,6 +283,11 @@
                 <a href="{{ route('profil.akun') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-gray-700 hover:bg-green-50 hover:text-green-700 font-semibold text-sm transition-colors">
                     <i class="fas fa-id-card text-green-500 w-4"></i>Profil Saya
                 </a>
+                @if(auth()->user()->isUser())
+                <a href="{{ route('ppdb.riwayat') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-gray-700 hover:bg-green-50 hover:text-green-700 font-semibold text-sm transition-colors">
+                    <i class="fas fa-clipboard-list text-green-500 w-4"></i>Riwayat PPSB
+                </a>
+                @endif
                 @if(auth()->user()->isAdmin())
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-blue-600 hover:bg-blue-50 font-semibold text-sm transition-colors">
                     <i class="fas fa-gauge w-4"></i>Dashboard Admin

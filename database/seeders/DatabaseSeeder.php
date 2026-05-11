@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         // Admin user
         User::firstOrCreate(
             ['email' => 'admin@alhikmah.sch.id'],
-            ['name' => 'Admin', 'password' => Hash::make('admin123')]
+            ['name' => 'Admin', 'password' => Hash::make('admin123'), 'role' => 'admin']
         );
 
         // Data Sekolah

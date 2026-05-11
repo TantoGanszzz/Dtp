@@ -3,10 +3,19 @@
 @section('content')
 
 <div class="card-admin overflow-hidden">
-    <div class="flex justify-between items-center px-6 py-4 border-b border-slate-100">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center px-6 py-4 border-b border-slate-100 gap-3">
         <div>
             <h2 class="font-extrabold text-gray-900">Data Pendaftar PPSB</h2>
             <p class="text-xs text-gray-400 mt-0.5 font-medium">Total {{ $ppdbs->total() }} pendaftar</p>
+        </div>
+        <div class="flex items-center gap-4">
+            <form method="GET" action="{{ route('admin.ppdb.index') }}" id="filterFormPpdb">
+                <select name="sekolah" onchange="document.getElementById('filterFormPpdb').submit()" class="text-xs border-gray-200 rounded-lg focus:ring-green-500 focus:border-green-500 py-1.5 pl-3 pr-8 font-medium text-gray-600">
+                    <option value="">Semua Tingkat</option>
+                    <option value="SMP" {{ request('sekolah') == 'SMP' ? 'selected' : '' }}>SMP</option>
+                    <option value="SMA" {{ request('sekolah') == 'SMA' ? 'selected' : '' }}>SMA</option>
+                </select>
+            </form>
         </div>
     </div>
     <div class="overflow-x-auto">

@@ -25,6 +25,7 @@ Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/ppdb', [PpdbController::class, 'index'])->name('ppdb');
     Route::post('/ppdb', [PpdbController::class, 'store'])->name('ppdb.store');
+    Route::get('/ppdb/riwayat', [PpdbController::class, 'riwayat'])->name('ppdb.riwayat');
 });
 
 // Profil Akun — Wajib login
