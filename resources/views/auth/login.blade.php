@@ -31,15 +31,7 @@
                 <img src="{{ asset('logo.jpg') }}" alt="Logo Yayasan" class="w-full h-full object-contain">
             </div>
             <h1 class="text-4xl font-extrabold mb-4 leading-tight">Yayasan Pondok Pesantren<br><span class="text-green-300">Al-Hidayah</span></h1>
-            <p class="text-green-200/80 leading-relaxed mb-10">Masuk ke akun Anda untuk mengakses formulir PPSB Online atau panel administrasi.</p>
-            <div class="grid grid-cols-2 gap-4">
-                @foreach([['1200+','Siswa Aktif'],['85+','Tenaga Pendidik'],['29+','Tahun Berdiri'],['95%','Lulus PTN']] as $s)
-                <div class="glass rounded-2xl p-4 text-center">
-                    <div class="text-2xl font-extrabold text-white">{{ $s[0] }}</div>
-                    <div class="text-green-300 text-xs mt-1">{{ $s[1] }}</div>
-                </div>
-                @endforeach
-            </div>
+            <p class="text-green-200/80 leading-relaxed mb-10">Masuk ke akun Anda untuk mengakses formulir PPSB Online.</p>
         </div>
     </div>
 

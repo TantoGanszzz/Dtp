@@ -40,7 +40,7 @@
         <div class="lg:col-span-2 space-y-6">
 
             {{-- Profil --}}
-            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 reveal">
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 reveal tilt-card group hover:border-blue-300 hover:shadow-xl transition-all duration-300">
                 <div class="flex items-center gap-3 mb-5">
                     <div class="w-10 h-10 grad-smp rounded-xl flex items-center justify-center">
                         <i class="fas fa-circle-info text-white text-sm"></i>
@@ -51,9 +51,9 @@
             </div>
 
             {{-- Fasilitas --}}
-            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 reveal">
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 reveal tilt-card group hover:border-blue-300 hover:shadow-xl transition-all duration-300">
                 <div class="flex items-center gap-3 mb-5">
-                    <div class="w-10 h-10 grad-smp rounded-xl flex items-center justify-center">
+                    <div class="w-10 h-10 grad-smp rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <i class="fas fa-building text-white text-sm"></i>
                     </div>
                     <h2 class="text-xl font-extrabold text-gray-900">Fasilitas</h2>
@@ -61,9 +61,11 @@
                 <div class="grid grid-cols-2 gap-3">
                     @foreach(explode("\n", $sekolah->fasilitas) as $f)
                     @if(trim($f))
-                    <div class="flex items-center gap-2.5 p-3 bg-blue-50 rounded-xl">
-                        <i class="fas fa-check-circle text-blue-600 flex-shrink-0"></i>
-                        <span class="text-sm font-medium text-gray-700">{{ ltrim(trim($f), '-') }}</span>
+                    <div class="flex items-center gap-3 p-3 bg-blue-50/50 hover:bg-blue-50 border border-transparent hover:border-blue-200 rounded-xl transition-colors">
+                        <div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-check text-blue-500 text-xs"></i>
+                        </div>
+                        <span class="text-sm font-semibold text-gray-700">{{ ltrim(trim($f), '-') }}</span>
                     </div>
                     @endif
                     @endforeach
@@ -72,7 +74,7 @@
 
             {{-- Struktur Organisasi --}}
             @if($sekolah->struktur_organisasi || $sekolah->foto_struktur)
-            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 tilt-card group hover:border-blue-300 hover:shadow-xl transition-all duration-300">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-10 h-10 grad-smp rounded-xl flex items-center justify-center">
                         <i class="fas fa-sitemap text-white text-sm"></i>
@@ -119,7 +121,7 @@
 
             {{-- Data Guru --}}
             @if($sekolah->data_guru)
-            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 tilt-card group hover:border-blue-300 hover:shadow-xl transition-all duration-300">
                 <div class="flex items-center gap-3 mb-5">
                     <div class="w-10 h-10 grad-smp rounded-xl flex items-center justify-center">
                         <i class="fas fa-chalkboard-user text-white text-sm"></i>
@@ -153,10 +155,14 @@
                 </div>
             </div>
             @else
-            <div class="rounded-3xl overflow-hidden shadow-md grad-smp h-40 flex items-center justify-center">
-                <div class="text-center text-white">
-                    <i class="fas fa-school text-4xl opacity-40 mb-2 block"></i>
-                    <p class="text-xs font-semibold opacity-60">Foto belum tersedia</p>
+            <div class="rounded-3xl overflow-hidden shadow-md grad-smp h-52 flex flex-col items-center justify-center relative">
+                <div class="absolute inset-0 bg-pattern opacity-10"></div>
+                <div class="relative z-10 text-center text-white">
+                    <div class="w-16 h-16 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-school text-2xl"></i>
+                    </div>
+                    <p class="text-sm font-bold opacity-90">SMP Al-Hidayah</p>
+                    <p class="text-xs font-medium opacity-70 mt-1">Foto belum tersedia</p>
                 </div>
             </div>
             @endif

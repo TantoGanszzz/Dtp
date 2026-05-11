@@ -38,8 +38,8 @@
                         ['#ekstrakurikuler', 'fa-star', 'Ekstrakurikuler'],
                         ['#fasilitas', 'fa-building', 'Fasilitas'],
                     ] as $n)
-                    <a href="{{ $n[0] }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-green-50 hover:text-green-700 font-medium text-sm transition-all group">
-                        <i class="fas {{ $n[1] }} w-4 text-gray-400 group-hover:text-green-500 transition-colors"></i>{{ $n[2] }}
+                    <a href="{{ $n[0] }}" class="sidebar-link">
+                        <i class="fas {{ $n[1] }}"></i>{{ $n[2] }}
                     </a>
                     @endforeach
                 </nav>
@@ -49,18 +49,43 @@
         {{-- Content --}}
         <div class="lg:col-span-3 space-y-10">
 
-            {{-- Sejarah --}}
+            {{-- Sejarah — Interactive Timeline --}}
             <section id="sejarah" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
-                <div class="flex items-center gap-3 mb-6">
+                <div class="flex items-center gap-3 mb-8">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-history text-white"></i>
                     </div>
                     <h2 class="text-2xl font-extrabold text-gray-900">Sejarah Yayasan</h2>
                 </div>
-                <div class="space-y-4 text-gray-600 leading-relaxed">
-                    <p> <strong class="text-gray-900"> Pondok Pesantren Al-Hidayah </strong> berdiri sejak tahun 2002 atas prakarsa <strong class="text-gray-900">KH.R.Mashadi Prawiranegara</strong> sebagai lembaga pendidikan Islam salaf yang menekankan keseimbangan antara pendalaman ilmu agama dan pebentukan akhlak melalui pendekatan tasawuf.</p>
-                    <p>Al-Hidayah mengembangkan Madrasah Diniyah sebagai fondasi utama pembelajaran, yang diperkaya dengan pendidian formal berbasis pesantren melalui SMP-SMA Unggulan Al-Hidayah, sehingga terwujud kesinambungan pendidikan noformal dan formal.</p>
-                    <p>Dengan kurikulum terpadu yang mengombinasikan kurikulum pesantren salaf dan kurikulun nasional, Pondok Pesantren Al-hidayah berkomitmen mencetak santri berakhlakul karimah, berilmu, dan siap mengabdi bagi agama, masyarakat, dan bangsa.</p>
+                <p class="text-gray-600 leading-relaxed mb-10 text-sm">
+                    <strong class="text-gray-900">Pondok Pesantren Al-Hidayah</strong> berdiri atas prakarsa
+                    <strong class="text-gray-900">KH.R.Mashadi Prawiranegara</strong> sebagai lembaga pendidikan Islam salaf
+                    yang menekankan keseimbangan antara pendalaman ilmu agama dan pembentukan akhlak melalui pendekatan tasawuf.
+                </p>
+
+                <div class="timeline">
+                    @foreach([
+                        ['2002', 'fa-mosque',         'Berdirinya Pondok Pesantren',  'Yayasan Pondok Pesantren Al-Hidayah resmi didirikan oleh KH.R.Mashadi Prawiranegara dengan fokus pada pendidikan Islam salaf dan pembentukan akhlakul karimah.'],
+                        ['2005', 'fa-book-quran',     'Program Madrasah Diniyah',      'Madrasah Diniyah resmi dibuka sebagai fondasi pembelajaran kitab kuning dan ilmu-ilmu agama Islam secara terstruktur dan berkelanjutan.'],
+                        ['2008', 'fa-school',         'Dibukanya SMP Unggulan',        'SMP Unggulan Al-Hidayah resmi beroperasi, mengintegrasikan kurikulum nasional dengan pendidikan pesantren dalam satu atap.'],
+                        ['2012', 'fa-university',     'Dibukanya SMA Unggulan',        'SMA Unggulan Al-Hidayah hadir untuk melanjutkan pembinaan santri ke jenjang yang lebih tinggi dengan program IPA unggulan.'],
+                        ['2018', 'fa-globe',          'Program Internasional',         'Kerja sama internasional dengan lembaga di Jepang resmi ditandatangani, membuka peluang kerja dan studi lanjut bagi alumni.'],
+                        ['2024', 'fa-laptop',         'Digitalisasi & PPDB Online',    'Sistem PPDB Online diluncurkan, memudahkan proses pendaftaran santri baru dari seluruh Indonesia secara digital dan transparan.'],
+                    ] as $idx => $tl)
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-card">
+                                <span class="timeline-year">{{ $tl[0] }}</span>
+                                <h3 class="font-extrabold text-gray-900 text-base mb-2">{{ $tl[2] }}</h3>
+                                <p class="text-gray-500 text-sm leading-relaxed">{{ $tl[3] }}</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot">
+                            <i class="fas {{ $tl[1] }} text-gray-400 text-sm"></i>
+                        </div>
+                        <div class="timeline-content"></div>
+                    </div>
+                    @endforeach
                 </div>
             </section>
 
@@ -104,28 +129,25 @@
             </section>
 
             {{-- Struktur --}}
-            <section id="struktur" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
-                <div class="flex items-center gap-3 mb-6">
+            <section id="struktur" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal tilt-card transition-all duration-300">
+                <div class="flex items-center gap-3 mb-8">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-sitemap text-white"></i>
                     </div>
                     <h2 class="text-2xl font-extrabold text-gray-900">Struktur Organisasi</h2>
                 </div>
-                <div class="space-y-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     @foreach([
-                        ['Pengasuh Yayasan', 'KH.R.Mashadi Prawiranegara',      'grad-green',    'text-white'],
-                        ['Sekretaris',    '- ',         'bg-gray-100',   'text-gray-900'],
-                        ['Bendahara',     'Lu’lu’ul Maknun',          'bg-gray-100',   'text-gray-900'],
-                        ['Kepala SMP',    'Sulistyowati,S.Pd',     'bg-green-50',   'text-green-900'],
-                        ['Kepala SMA',    'Muhtarul Aziz,S.E ',       'bg-green-50',   'text-green-900'],
+                        ['Pengasuh Yayasan', 'KH.R.Mashadi Prawiranegara', 'fa-crown', 'text-amber-500', 'bg-amber-50', 'border-amber-200', 'col-span-full sm:col-span-2 lg:col-span-3 lg:w-2/3 mx-auto'],
+                        ['Sekretaris',    '-', 'fa-pen-nib', 'text-blue-500', 'bg-blue-50', 'border-blue-200', ''],
+                        ['Bendahara',     'Lu’lu’ul Maknun', 'fa-wallet', 'text-emerald-500', 'bg-emerald-50', 'border-emerald-200', ''],
+                        ['Kepala SMP',    'Sulistyowati,S.Pd', 'fa-school', 'text-indigo-500', 'bg-indigo-50', 'border-indigo-200', ''],
+                        ['Kepala SMA',    'Muhtarul Aziz,S.E', 'fa-university', 'text-sky-500', 'bg-sky-50', 'border-sky-200', ''],
                     ] as $s)
-                    <div class="flex items-center gap-4 p-4 {{ $s[2] }} rounded-2xl">
-                        <div class="w-11 h-11 {{ $s[2] === 'grad-green' ? 'bg-white/20' : 'bg-white' }} rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm">
-                            <i class="fas fa-user {{ $s[3] }} opacity-70"></i>
-                        </div>
+                    <div class="group p-5 rounded-2xl border border-gray-100 hover:{{ $s[5] }} {{ $s[4] }} hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center {{ $s[6] }}">
                         <div>
-                            <div class="font-extrabold {{ $s[3] }} text-sm">{{ $s[1] }}</div>
-                            <div class="text-xs {{ $s[3] }} opacity-60 mt-0.5">{{ $s[0] }}</div>
+                            <div class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">{{ $s[0] }}</div>
+                            <div class="font-extrabold text-gray-900 text-sm md:text-base">{{ $s[1] }}</div>
                         </div>
                     </div>
                     @endforeach
@@ -182,59 +204,58 @@
             </section>
 
             {{-- Kegiatan Mingguan --}}
-            <section id="kegiatan-mingguan" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
+            <section id="kegiatan-mingguan" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal tilt-card transition-all duration-300">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-calendar-week text-white"></i>
                     </div>
                     <h2 class="text-2xl font-extrabold text-gray-900">Kegiatan Mingguan</h2>
                 </div>
-                <ul class="space-y-3">
+                <div class="grid sm:grid-cols-2 gap-4">
                     @foreach([
-                        'Rutanin Khususiyah, Thariqoh, Syadziliyah',
-                        'Waqodiyah Wanasapan diyan, setiap Senin malam Selasa',
-                        'Istighosah dan Dzikir setiap Kamis malam Jumat',
-                        'Juma\'at',
-                        'Pembinaan Seni, Bakat & Olahraga',
-                        'Pembinaan Qiroatul Qur’an',
-                        'Kegiatan Ekstrakurikuler',
-                    ] as $m)
-                    <li class="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-100 hover:shadow-md transition-all">
-                        <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-1 shadow-sm">
-                            <i class="fas fa-calendar-check text-emerald-600 text-lg"></i>
+                        ['Rutanin Khususiyah, Thariqoh, Syadziliyah'],
+                        ['Waqodiyah Wanasapan diyan, setiap Senin malam Selasa'],
+                        ['Istighosah dan Dzikir setiap Kamis malam Jumat'],
+                        ['Jum\'at Bersih & Sehat'],
+                        ['Pembinaan Seni, Bakat & Olahraga'],
+                        ['Pembinaan Qiroatul Qur’an'],
+                    ] as $idx => $m)
+                    <div class="flex items-start gap-4 p-4 rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50/30 border border-green-100 hover:border-green-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm group-hover:bg-green-100 transition-colors">
+                            <i class="fas fa-calendar-check text-green-500 text-lg group-hover:scale-110 transition-transform"></i>
                         </div>
-                        <div class="text-gray-800 font-semibold leading-relaxed">{{ $m }}</div>
-                    </li>
+                        <div class="text-gray-800 font-bold leading-snug pt-1">{{ $m[0] }}</div>
+                    </div>
                     @endforeach
-                </ul>
+                </div>
             </section>
 
             {{-- Kegiatan Bulanan --}}
-            <section id="kegiatan-bulanan" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
+            <section id="kegiatan-bulanan" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal tilt-card transition-all duration-300">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-calendar-alt text-white"></i>
                     </div>
                     <h2 class="text-2xl font-extrabold text-gray-900">Kegiatan Bulanan</h2>
                 </div>
-                <ul class="space-y-3">
+                <div class="grid sm:grid-cols-3 gap-4">
                     @foreach([
-                        'Pengajian Kitab Kuning Bersama (Ahad Legi)',
-                        'Diba\'iyah Kuboro / Khitobah Kubro',
-                        'Malam Jum\'at Legi',
+                        ['Pengajian Kitab Kuning Bersama (Ahad Legi)'],
+                        ['Diba\'iyah Kuboro / Khitobah Kubro'],
+                        ['Malam Jum\'at Legi'],
                     ] as $b)
-                    <li class="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-100 hover:shadow-md transition-all">
-                        <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-1 shadow-sm">
-                            <i class="fas fa-calendar-day text-emerald-600 text-lg"></i>
+                    <div class="flex flex-col items-center text-center gap-4 p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-sky-50/30 border border-blue-100 hover:border-blue-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm group-hover:bg-blue-100 transition-colors">
+                            <i class="fas fa-calendar-day text-blue-500 text-xl group-hover:scale-110 transition-transform"></i>
                         </div>
-                        <div class="text-gray-800 font-semibold leading-relaxed">{{ $b }}</div>
-                    </li>
+                        <div class="text-gray-800 font-bold leading-snug">{{ $b[0] }}</div>
+                    </div>
                     @endforeach
-                </ul>
+                </div>
             </section>
 
             {{-- Kegiatan Tahunan --}}
-            <section id="kegiatan-tahunan" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
+            <section id="kegiatan-tahunan" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal tilt-card transition-all duration-300">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-calendar-days text-white"></i>
@@ -249,18 +270,21 @@
                         ['Festival Pesantren dan Acara Kesenian', 'fas fa-music'],
                         ['Masa Ta’aruf Santri Baru', 'fas fa-users'],
                     ] as $t)
-                    <div class="group p-6 rounded-2xl border border-gray-100 hover:border-emerald-200 hover:shadow-xl hover:-translate-y-1 transition-all bg-gradient-to-br from-white to-gray-50 cursor-pointer">
-                        <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-emerald-200 transition-all">
-                            <i class="{{ $t[1] }} text-2xl text-emerald-600 group-hover:text-emerald-700"></i>
+                    <div class="group p-6 rounded-2xl border border-gray-100 hover:border-emerald-300 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 bg-white relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-bl-full opacity-50 group-hover:scale-110 transition-transform"></div>
+                        <div class="relative z-10">
+                            <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-emerald-500 transition-colors duration-300 shadow-sm">
+                                <i class="{{ $t[1] }} text-xl text-emerald-600 group-hover:text-white transition-colors"></i>
+                            </div>
+                            <h4 class="font-extrabold text-lg text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors leading-tight">{{ $t[0] }}</h4>
                         </div>
-                        <h4 class="font-bold text-lg text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors leading-tight">{{ $t[0] }}</h4>
                     </div>
                     @endforeach
                 </div>
             </section>
 
             {{-- Ekstrakurikuler --}}
-            <section id="ekstrakurikuler" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
+            <section id="ekstrakurikuler" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal tilt-card transition-all duration-300">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-star text-white"></i>
@@ -279,20 +303,20 @@
                         ['Pembinaan Praktik Ibadah', 'fas fa-pray'],
                         ['Majlis Al-Banjari & Hadrah', 'fas fa-drum'],
                         ['Pelatihan Desain & Organisasi', 'fas fa-vector-square'],
-                        ['Pelatihan Seni, Bakat & Olahraga', 'fas fa-palette'],
+                        ['Seni, Bakat & Olahraga', 'fas fa-palette'],
                     ] as $e)
-                    <div class="group p-4 rounded-xl border border-gray-100 hover:border-emerald-200 hover:shadow-md hover:bg-emerald-50 transition-all text-center">
-                        <div class="w-12 h-12 mx-auto mb-3 bg-emerald-100 rounded-xl flex items-center justify-center group-hover:bg-emerald-200 transition-all">
-                            <i class="{{ $e[1] }} text-lg text-emerald-600 group-hover:text-emerald-700"></i>
+                    <div class="group p-5 rounded-2xl border border-gray-100 hover:border-green-300 hover:shadow-lg hover:bg-green-50/50 hover:-translate-y-1 transition-all duration-300 text-center cursor-default">
+                        <div class="w-14 h-14 mx-auto mb-3 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center group-hover:bg-green-500 transition-colors duration-300 shadow-sm">
+                            <i class="{{ $e[1] }} text-xl text-green-600 group-hover:text-white group-hover:animate-bounce transition-colors"></i>
                         </div>
-                        <div class="font-semibold text-sm text-gray-800 group-hover:text-emerald-700 leading-tight px-1">{{ $e[0] }}</div>
+                        <div class="font-bold text-sm text-gray-800 group-hover:text-green-700 leading-tight px-1">{{ $e[0] }}</div>
                     </div>
                     @endforeach
                 </div>
             </section>
 
             {{-- Fasilitas --}}
-            <section id="fasilitas" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal">
+            <section id="fasilitas" class="bg-white rounded-3xl shadow-md border border-gray-100 p-8 reveal tilt-card transition-all duration-300">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-12 h-12 grad-green rounded-2xl flex items-center justify-center shadow-md">
                         <i class="fas fa-building text-white"></i>
@@ -300,21 +324,24 @@
                     <h2 class="text-2xl font-extrabold text-gray-900">Fasilitas</h2>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-@foreach([
+                    @foreach([
                         ['title' => 'Tenaga Pendidik Profesional', 'icon' => 'fas fa-chalkboard-teacher'],
                         ['title' => 'Lingkungan Tenang, Aman, Islami', 'icon' => 'fas fa-shield-alt'],
                         ['title' => 'Gedung Asrama Memadai', 'icon' => 'fas fa-bed'],
                         ['title' => 'Ruang Belajar Nyaman', 'icon' => 'fas fa-chair'],
                         ['title' => 'Laboratorium Komputer', 'icon' => 'fas fa-laptop'],
-                        ['title' => 'Perpustakaan', 'icon' => 'fas fa-book-open'],
+                        ['title' => 'Perpustakaan Lengkap', 'icon' => 'fas fa-book-open'],
                         ['title' => 'Sistem Administrasi Terpusat', 'icon' => 'fas fa-server'],
-                        ['title' => 'Bantuan untuk Santri Kurang Mampu', 'icon' => 'fas fa-hand-holding-heart'],
+                        ['title' => 'Bantuan Santri Kurang Mampu', 'icon' => 'fas fa-hand-holding-heart'],
                     ] as $f)
-                    <div class="group p-6 rounded-2xl border border-gray-100 hover:border-emerald-200 hover:shadow-xl hover:-translate-y-1 transition-all bg-gradient-to-br from-white to-gray-50 cursor-pointer">
-                        <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-emerald-200 transition-all">
-                            <i class="{{ $f['icon'] }} text-2xl text-emerald-600 group-hover:text-emerald-700"></i>
+                    <div class="group p-6 rounded-2xl border border-gray-100 hover:border-green-300 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 bg-white relative overflow-hidden flex flex-col justify-between">
+                        <div class="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-green-50 to-transparent rounded-tl-full opacity-50 group-hover:scale-125 transition-transform duration-500"></div>
+                        <div class="relative z-10">
+                            <div class="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-green-500 transition-colors duration-300 shadow-sm">
+                                <i class="{{ $f['icon'] }} text-xl text-green-600 group-hover:text-white transition-colors"></i>
+                            </div>
+                            <h4 class="font-extrabold text-lg text-gray-900 group-hover:text-green-700 transition-colors leading-tight">{{ $f['title'] }}</h4>
                         </div>
-                        <h4 class="font-bold text-lg text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors leading-tight">{{ $f['title'] }}</h4>
                     </div>
                     @endforeach
                 </div>

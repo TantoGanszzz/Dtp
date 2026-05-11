@@ -16,6 +16,12 @@
         * { scroll-behavior: smooth; -webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale !important; text-rendering: optimizeLegibility !important; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; backface-visibility: hidden; }
 
+        /* ── Custom Scrollbar ── */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #16a34a, #22c55e); border-radius: 99px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #15803d, #16a34a); }
+
         :root {
             --green-primary: #16a34a;
             --green-light: #22c55e;
@@ -143,6 +149,109 @@
         /* ── Section Divider ── */
         .section-divider { position: relative; }
         .section-divider::before { content:''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: linear-gradient(90deg, transparent, #16a34a, transparent); border-radius: 99px; }
+
+        /* ── 3D Tilt Card ── */
+        .tilt-card { transition: transform 0.3s ease, box-shadow 0.3s ease; transform-style: preserve-3d; will-change: transform; }
+        .tilt-card:hover { box-shadow: 0 30px 70px rgba(0,0,0,0.15); }
+
+        /* ── Typewriter Cursor ── */
+        .typewriter-cursor { display: inline-block; width: 3px; height: 1em; background: #4ade80; margin-left: 3px; vertical-align: middle; animation: blink-cursor 0.75s step-end infinite; border-radius: 2px; }
+        @keyframes blink-cursor { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        /* ── Stats Counter Section ── */
+        .stats-glass { background: rgba(255,255,255,0.07); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border: 1px solid rgba(255,255,255,0.13); }
+        .stats-number { background: linear-gradient(135deg, #4ade80, #86efac); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+
+
+        /* ── Masonry Gallery ── */
+        .masonry-grid { columns: 2; column-gap: 1rem; }
+        @media (min-width: 768px) { .masonry-grid { columns: 3; } }
+        .masonry-item { break-inside: avoid; margin-bottom: 1rem; }
+        .gallery-filter-btn { transition: all 0.3s; }
+        .gallery-filter-btn.active { background: #16a34a !important; color: white !important; }
+
+        /* ── Lightbox ── */
+        #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+        #lightbox.open { display: flex; animation: fadeIn 0.25s ease; }
+        #lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 12px; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
+        @keyframes fadeIn { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+
+        /* ── Floating WhatsApp ── */
+        .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 999; }
+        .wa-btn { width: 58px; height: 58px; background: linear-gradient(135deg, #25d366, #128c7e); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(37,211,102,0.45); cursor: pointer; transition: all 0.3s cubic-bezier(.4,0,.2,1); position: relative; }
+        .wa-btn:hover { transform: scale(1.12) translateY(-3px); box-shadow: 0 16px 40px rgba(37,211,102,0.55); }
+        .wa-pulse { position: absolute; inset: -4px; border-radius: 50%; background: rgba(37,211,102,0.35); animation: wa-ping 2s ease-out infinite; }
+        @keyframes wa-ping { 0%{transform:scale(1);opacity:0.6} 100%{transform:scale(1.7);opacity:0} }
+        .wa-tooltip { position: absolute; bottom: calc(100% + 12px); right: 0; background: white; color: #1f2937; font-size: 12px; font-weight: 700; white-space: nowrap; padding: 8px 14px; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); opacity: 0; transform: translateY(6px); transition: all 0.3s; pointer-events: none; }
+        .wa-tooltip::after { content:''; position:absolute; bottom:-5px; right:20px; width:10px; height:10px; background:white; transform:rotate(45deg); border-radius:2px; }
+        .wa-float:hover .wa-tooltip { opacity: 1; transform: translateY(0); }
+
+        /* ── Keunggulan Numbered Cards ── */
+        .keunggulan-num { font-size: 4rem; font-weight: 900; line-height: 1; color: rgba(22,163,74,0.07); position: absolute; top: 12px; right: 16px; letter-spacing: -4px; font-variant-numeric: tabular-nums; transition: color 0.3s; }
+        .card:hover .keunggulan-num { color: rgba(22,163,74,0.13); }
+        .card:hover .keunggulan-icon { transform: rotate(-8deg) scale(1.15); box-shadow: 0 0 40px rgba(34,197,94,0.5); }
+        .keunggulan-icon { transition: all 0.4s cubic-bezier(.4,0,.2,1); }
+
+        /* ── Shimmer effect ── */
+        @keyframes shimmer { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+        .shimmer { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 400px 100%; animation: shimmer 1.5s infinite; }
+
+        /* ── Countdown Timer ── */
+        .countdown-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(20px); border-radius: 20px; padding: 20px 16px; text-align: center; min-width: 90px; }
+        .countdown-num { font-size: 3rem; font-weight: 900; line-height: 1; background: linear-gradient(135deg, #4ade80, #86efac); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-variant-numeric: tabular-nums; }
+        .countdown-label { font-size: 0.65rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(187,247,208,0.7); margin-top: 6px; }
+        .countdown-sep { font-size: 2.5rem; font-weight: 900; color: rgba(134,239,172,0.5); align-self: flex-start; padding-top: 14px; }
+        @keyframes countdown-pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+        .countdown-sep { animation: countdown-pulse 1s ease-in-out infinite; }
+
+        /* ── Flip Cards 3D ── */
+        .flip-card { perspective: 1000px; height: 220px; cursor: pointer; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s cubic-bezier(.4,0,.2,1); transform-style: preserve-3d; }
+        .flip-card:hover .flip-card-inner, .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px; }
+        .flip-card-front { background: white; border: 1px solid #f3f4f6; }
+        .flip-card-back { background: linear-gradient(135deg, #14532d, #16a34a); transform: rotateY(180deg); }
+        .flip-card:hover .flip-card-front, .flip-card.flipped .flip-card-front { box-shadow: 0 30px 60px rgba(22,163,74,0.2); }
+
+        /* ── FAQ Accordion ── */
+        .faq-item { border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; transition: border-color 0.3s, box-shadow 0.3s; }
+        .faq-item.open { border-color: #86efac; box-shadow: 0 4px 20px rgba(34,197,94,0.08); }
+        .faq-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: white; cursor: pointer; gap: 16px; text-align: left; }
+        .faq-btn:hover { background: #f0fdf4; }
+        .faq-icon { width: 32px; height: 32px; border-radius: 50%; background: #dcfce7; color: #16a34a; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
+        .faq-item.open .faq-icon { background: #16a34a; color: white; transform: rotate(45deg); }
+        .faq-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(.4,0,.2,1), padding 0.3s; }
+        .faq-body.open { max-height: 300px; }
+        .faq-body-inner { padding: 0 24px 20px; color: #6b7280; line-height: 1.7; font-size: 0.9rem; }
+
+        /* ── Timeline Sejarah ── */
+        .timeline { position: relative; }
+        .timeline::before { content:''; position:absolute; left: 50%; top:0; bottom:0; width: 2px; background: linear-gradient(180deg, transparent, #16a34a 5%, #16a34a 95%, transparent); transform: translateX(-50%); }
+        @media(max-width:767px) { .timeline::before { left: 24px; } }
+        .timeline-item { display: flex; gap: 0; margin-bottom: 48px; position: relative; }
+        .timeline-item:nth-child(odd) { flex-direction: row; }
+        .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+        @media(max-width:767px) { .timeline-item, .timeline-item:nth-child(even) { flex-direction: row; padding-left: 60px; } }
+        .timeline-content { width: calc(50% - 36px); }
+        @media(max-width:767px) { .timeline-content { width: 100%; } }
+        .timeline-item:nth-child(odd) .timeline-content { text-align: right; padding-right: 32px; }
+        .timeline-item:nth-child(even) .timeline-content { text-align: left; padding-left: 32px; }
+        @media(max-width:767px) { .timeline-item:nth-child(odd) .timeline-content, .timeline-item:nth-child(even) .timeline-content { text-align: left; padding-left: 0; padding-right: 0; } }
+        .timeline-dot { position: absolute; left: 50%; top: 16px; transform: translateX(-50%); width: 44px; height: 44px; border-radius: 50%; background: white; border: 3px solid #e5e7eb; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.4s; flex-shrink: 0; }
+        @media(max-width:767px) { .timeline-dot { left: 4px; transform: none; } }
+        .timeline-item.visible .timeline-dot { background: #16a34a; border-color: #16a34a; box-shadow: 0 0 0 6px rgba(22,163,74,0.15); }
+        .timeline-card { background: white; border: 1px solid #e5e7eb; border-radius: 20px; padding: 20px 24px; transition: all 0.4s; opacity: 0; transform: translateY(20px); }
+        .timeline-item.visible .timeline-card { opacity: 1; transform: translateY(0); box-shadow: 0 8px 30px rgba(0,0,0,0.07); border-color: #bbf7d0; }
+        .timeline-year { display: inline-block; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; font-size: 0.75rem; font-weight: 800; padding: 3px 12px; border-radius: 99px; margin-bottom: 8px; letter-spacing: 0.05em; }
+
+        /* ── Active Sidebar ── */
+        .sidebar-link { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 14px; color: #6b7280; font-weight: 600; font-size: 0.875rem; transition: all 0.3s cubic-bezier(.4,0,.2,1); border: 1px solid transparent; background: transparent; }
+        .sidebar-link:hover { background: white; color: #15803d; border-color: #bbf7d0; box-shadow: 0 4px 15px rgba(34,197,94,0.05); transform: translateX(4px); }
+        .sidebar-link.active { background: linear-gradient(135deg, #16a34a, #22c55e); color: white; border-color: transparent; box-shadow: 0 8px 20px rgba(22,163,74,0.25); }
+        .sidebar-link i { width: 20px; color: #9ca3af; transition: color 0.3s; text-align: center; }
+        .sidebar-link:hover i { color: #16a34a; }
+        .sidebar-link.active i { color: white; }
     </style>
 </head>
 <body class="bg-gray-50 antialiased">
@@ -441,6 +550,22 @@
     </div>
 </footer>
 
+{{-- Floating WhatsApp --}}
+<div class="wa-float">
+    <a href="https://wa.me/6287897640195?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20PPSB%20Al-Hidayah" target="_blank" class="wa-btn" id="waBtn">
+        <span class="wa-pulse"></span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+    <div class="wa-tooltip">💬 Chat dengan Kami</div>
+</div>
+
+<div id="lightbox" onclick="closeLightbox()">
+    <button onclick="closeLightbox()" style="position:absolute;top:20px;right:24px;color:white;font-size:2rem;background:none;border:none;cursor:pointer;line-height:1;">×</button>
+    <img id="lightboxImg" src="" alt="">
+</div>
+
 <script>
     // Mobile menu toggle
     document.getElementById('mobileToggle').addEventListener('click', () => {
@@ -495,6 +620,129 @@
             }
         }
     });
+
+    // 3D Tilt Effect
+    document.querySelectorAll('.tilt-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const cx = rect.width / 2;
+            const cy = rect.height / 2;
+            const rotateX = ((y - cy) / cy) * -7;
+            const rotateY = ((x - cx) / cx) * 7;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+        });
+    });
+
+    // Lightbox
+    function openLightbox(src, alt) {
+        document.getElementById('lightboxImg').src = src;
+        document.getElementById('lightboxImg').alt = alt || '';
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+
+
+    // Typewriter Effect
+    (function() {
+        const el = document.getElementById('typewriterText');
+        if (!el) return;
+        const words = ['Cerdas & Berakhlak', 'Hafidz Al-Qur\'an', 'Siap Bersaing Global', 'Berkarakter Islami'];
+        let wi = 0, ci = 0, deleting = false;
+        function type() {
+            const word = words[wi];
+            el.textContent = deleting ? word.substring(0, ci--) : word.substring(0, ci++);
+            let delay = deleting ? 60 : 100;
+            if (!deleting && ci === word.length + 1) { delay = 2000; deleting = true; }
+            else if (deleting && ci === 0) { deleting = false; wi = (wi + 1) % words.length; delay = 400; }
+            setTimeout(type, delay);
+        }
+        type();
+    })();
+
+    // Countdown Timer
+    (function() {
+        const cdEl = document.getElementById('countdownTimer');
+        if (!cdEl) return;
+        const deadline = new Date('2026-06-30T23:59:59').getTime();
+        function pad(n) { return String(n).padStart(2, '0'); }
+        function tick() {
+            const now = Date.now();
+            const diff = deadline - now;
+            if (diff <= 0) {
+                cdEl.innerHTML = '<span class="text-green-300 font-bold text-lg">Pendaftaran telah ditutup</span>';
+                return;
+            }
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            document.getElementById('cd-days').textContent = pad(d);
+            document.getElementById('cd-hours').textContent = pad(h);
+            document.getElementById('cd-mins').textContent = pad(m);
+            document.getElementById('cd-secs').textContent = pad(s);
+        }
+        tick();
+        setInterval(tick, 1000);
+    })();
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const body = item.querySelector('.faq-body');
+            const isOpen = item.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.faq-item.open').forEach(el => {
+                el.classList.remove('open');
+                el.querySelector('.faq-body').classList.remove('open');
+            });
+            if (!isOpen) {
+                item.classList.add('open');
+                body.classList.add('open');
+            }
+        });
+    });
+
+    // Timeline IntersectionObserver
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    if (timelineItems.length) {
+        const tlObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    tlObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.25 });
+        timelineItems.forEach(el => tlObserver.observe(el));
+    }
+
+    // Profil Sidebar Active Highlight
+    (function() {
+        const links = document.querySelectorAll('.sidebar-link[href^="#"]');
+        if (!links.length) return;
+        const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    links.forEach(l => l.classList.remove('active'));
+                    const active = document.querySelector(`.sidebar-link[href="#${entry.target.id}"]`);
+                    if (active) active.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-20% 0px -60% 0px' });
+        sections.forEach(s => obs.observe(s));
+    })();
 </script>
 </body>
 </html>
