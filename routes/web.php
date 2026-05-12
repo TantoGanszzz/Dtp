@@ -20,6 +20,7 @@ Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
 Route::get('/sekolah/smp', [SekolahController::class, 'smp'])->name('sekolah.smp');
 Route::get('/sekolah/sma', [SekolahController::class, 'sma'])->name('sekolah.sma');
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
+Route::get('/galeri/{galeri}', [GaleriController::class, 'show'])->name('galeri.show');
 
 // PPDB — Wajib login dulu sebagai user
 Route::middleware(['auth', 'role:user'])->group(function () {

@@ -211,7 +211,37 @@
         <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center mx-auto mb-5">
             <i class="fas fa-school text-blue-300 text-3xl"></i>
         </div>
-        <p class="text-gray-400 font-semibold">Informasi sekolah belum tersedia.</p>
+    </div>
+    @endif
+
+    {{-- Galeri & Prestasi --}}
+    @if(isset($galeris) && $galeris->count())
+    <div class="mt-16 reveal">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="w-12 h-12 grad-smp rounded-xl flex items-center justify-center shadow-md">
+                <i class="fas fa-medal text-white text-xl"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-extrabold text-gray-900">Galeri & Prestasi SMP</h2>
+                <p class="text-sm text-gray-500">Dokumentasi kegiatan dan siswa berprestasi di SMP Al-Hidayah</p>
+            </div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            @foreach($galeris as $g)
+            <a href="{{ route('galeri.show', $g->id) }}" class="group block bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:border-blue-200 transition-all duration-300">
+                <div class="aspect-[4/3] relative overflow-hidden bg-gray-100">
+                    <img src="{{ asset('storage/'.$g->foto) }}" alt="{{ $g->judul }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute top-3 left-3 flex gap-2">
+                        <span class="text-[10px] bg-green-500 text-white px-2 py-0.5 rounded-full uppercase font-bold">{{ $g->kategori }}</span>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-sm text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 leading-snug">{{ $g->judul }}</h3>
+                </div>
+            </a>
+            @endforeach
+        </div>
     </div>
     @endif
 </div>

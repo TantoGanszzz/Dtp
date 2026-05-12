@@ -248,7 +248,7 @@
         <div class="masonry-grid">
             @foreach($galeris as $g)
             <div class="masonry-item reveal">
-                <div class="relative group overflow-hidden rounded-2xl shadow-sm cursor-pointer" onclick="openLightbox('{{ asset('storage/'.$g->foto) }}','{{ $g->judul }}')">
+                <div class="relative group overflow-hidden rounded-2xl shadow-sm cursor-pointer" onclick="window.location.href='{{ route('galeri.show', $g->id) }}'">
                     <img src="{{ asset('storage/'.$g->foto) }}" alt="{{ $g->judul }}" class="w-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                         <div class="text-white transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
@@ -258,7 +258,7 @@
                     </div>
                     <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
                         <div class="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center">
-                            <i class="fas fa-expand text-gray-700 text-xs"></i>
+                            <i class="fas fa-arrow-right text-gray-700 text-xs transform -rotate-45"></i>
                         </div>
                     </div>
                 </div>

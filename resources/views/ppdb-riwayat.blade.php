@@ -28,9 +28,12 @@
         <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
             <i class="fas fa-check text-green-600"></i>
         </div>
-        <div>
-            <h4 class="text-green-800 font-extrabold">Pendaftaran Berhasil Dikirim!</h4>
-            <p class="text-green-700 text-sm mt-1">{{ session('success') }}</p>
+        <div class="flex-1">
+            <h4 class="text-green-800 font-extrabold text-lg">Pendaftaran Berhasil Dikirim!</h4>
+            <p class="text-green-700 text-sm mt-1 mb-4">{{ session('success') }}</p>
+            <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Yayasan%2C%20saya%20ingin%20melakukan%20konfirmasi%20pembayaran%20untuk%20pendaftaran%20PPSB." target="_blank" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-colors shadow-sm">
+                <i class="fab fa-whatsapp text-lg"></i> Konfirmasi Pembayaran via WhatsApp
+            </a>
         </div>
     </div>
     @endif
@@ -86,7 +89,12 @@
                     ];
                     $cfg = $statusConfig[$item->status] ?? $statusConfig['pending'];
                 @endphp
-                <div class="flex items-center">
+                <div class="flex items-center gap-3">
+                    @if($item->status == 'pending')
+                    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Yayasan%2C%20saya%20telah%20mendaftar%20PPSB%20dengan%20nama%20{{ urlencode($item->nama_lengkap) }}%20dan%20ingin%20konfirmasi%20pembayaran." target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 bg-green-500 hover:bg-green-600 text-white rounded-xl text-xs font-bold transition-colors shadow-sm">
+                        <i class="fab fa-whatsapp text-sm"></i> Bayar
+                    </a>
+                    @endif
                     <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold border {{ $cfg[0] }}">
                         <i class="fas {{ $cfg[1] }}"></i>
                         {{ $cfg[2] }}

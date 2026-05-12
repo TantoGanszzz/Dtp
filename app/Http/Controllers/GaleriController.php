@@ -16,4 +16,9 @@ class GaleriController extends Controller
         $galeris = $query->paginate(12);
         return view('galeri', compact('galeris'));
     }
+
+    public function show(Galeri $galeri)
+    {
+        return view('galeri.show', compact('galeri'));
+    }
 }

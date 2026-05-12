@@ -23,15 +23,17 @@ class GaleriController extends Controller
     {
         $request->validate([
             'judul'     => 'required|string|max:255',
-            'kategori'  => 'required|in:kegiatan,fasilitas,event',
+            'kategori'  => 'required|in:kegiatan,fasilitas,event,prestasi',
+            'unit'      => 'required|in:umum,smp,sma',
             'foto'      => 'required|image|max:2048',
-            'deskripsi' => 'nullable|string|max:500',
+            'deskripsi' => 'nullable|string',
         ]);
 
         $path = $request->file('foto')->store('galeri', 'public');
         Galeri::create([
             'judul'     => $request->judul,
             'kategori'  => $request->kategori,
+            'unit'      => $request->unit,
             'foto'      => $path,
             'deskripsi' => $request->deskripsi,
         ]);

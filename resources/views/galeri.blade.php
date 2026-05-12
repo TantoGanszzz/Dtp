@@ -25,7 +25,7 @@
             @if($galeris->count())
             <div class="flex flex-col gap-6 justify-start">
                 @foreach($galeris as $g)
-                <div class="flex flex-col md:flex-row gap-5 group">
+                <a href="{{ route('galeri.show', $g->id) }}" class="flex flex-col md:flex-row gap-5 group hover:bg-gray-50 p-3 -mx-3 rounded-2xl transition-colors">
                     <!-- Image Container -->
                     <div class="w-full md:w-64 shrink-0">
                         <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100">
@@ -35,15 +35,19 @@
                     
                     <!-- Content Container -->
                     <div class="flex flex-col justify-center py-2">
-                        <div>
+                        <div class="flex gap-2">
                             <span class="text-xs bg-green-500 text-white px-2.5 py-1 rounded-full uppercase font-bold">{{ $g->kategori }}</span>
+                            @if($g->unit && $g->unit != 'umum')
+                                <span class="text-xs bg-blue-500 text-white px-2.5 py-1 rounded-full uppercase font-bold">{{ $g->unit }}</span>
+                            @endif
                         </div>
-                        <p class="font-bold text-sm mt-2 leading-tight text-gray-900">{{ $g->judul }}</p>
+                        <p class="font-bold text-lg mt-2 leading-tight text-gray-900 group-hover:text-green-600 transition-colors">{{ $g->judul }}</p>
                         @if($g->deskripsi)
-                        <p class="text-gray-600 text-xs mt-1 leading-snug line-clamp-2">{{ $g->deskripsi }}</p>
+                        <div class="text-gray-600 text-sm mt-2 leading-relaxed line-clamp-2 prose-sm">{!! strip_tags($g->deskripsi) !!}</div>
                         @endif
+                        <span class="text-green-600 text-xs font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">Baca Selengkapnya <i class="fas fa-arrow-right"></i></span>
                     </div>
-                </div>
+                </a>
                 @endforeach
             </div>
             <div class="mt-10 flex justify-center">{{ $galeris->links() }}</div>
@@ -75,11 +79,11 @@
                         </div>
                     </a>
                     
-                    @foreach(['kegiatan' => 'fa-running', 'fasilitas' => 'fa-building', 'event' => 'fa-calendar-star'] as $kat => $icon)
+                    @foreach(['kegiatan' => 'fa-running', 'fasilitas' => 'fa-building', 'event' => 'fa-calendar-star', 'prestasi' => 'fa-medal'] as $kat => $icon)
                     <a href="{{ route('galeri', ['kategori' => $kat]) }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all capitalize {{ request('kategori') == $kat ? 'bg-green-50 text-green-600 font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-green-600' }}">
                         <div class="flex items-center gap-3">
                             <i class="fas {{ $icon }} w-5 text-center"></i>
-                            <span>{{ ucfirst($kat) }}</span>
+                            <span>{{ $kat == 'prestasi' ? 'Siswa Berprestasi' : ucfirst($kat) }}</span>
                         </div>
                     </a>
                     @endforeach
